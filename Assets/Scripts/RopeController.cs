@@ -5,30 +5,45 @@ using UnityEngine;
 public class RopeController : MonoBehaviour
 {
     [SerializeField]
+    private float shootRange = 100;
+    [SerializeField]
     private GameObject anchorGO;
     private Rigidbody anchorRB;
-    private SpringJoint joint;
+    private ConfigurableJoint joint;
 
     void Start()
     {
-        joint = GetComponent<SpringJoint>();
+        joint = GetComponent<ConfigurableJoint>();
         anchorRB = anchorGO.GetComponent<Rigidbody>();
     }
 
 
     void Update()
     {
-        if (Input.GetMouseButton(0)) //TODO: spawn anchor at mouse position (if raycast hits) and configure joint
+        if (Input.GetMouseButton(0) && joint == null)
         {
-            if (joint == null)
+
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity/*shootRange*/) && hit.collider)
             {
+                anchorGO.transform.position = hit.point;
+
                 anchorGO.SetActive(true);
-                gameObject.AddComponent<SpringJoint>();
-                joint = GetComponent<SpringJoint>();
-                joint.anchor = Vector3.zero;
+                gameObject.AddComponent<ConfigurableJoint>();
+                joint = GetComponent<ConfigurableJoint>();
                 joint.autoConfigureConnectedAnchor = false;
+                joint.axis = Vector3.zero;
+                joint.anchor = Vector3.zero;
+                joint.secondaryAxis = Vector3.zero;
                 joint.connectedAnchor = Vector3.zero;
-                joint.spring = 10; //somehow calcualte from distance? Vector3.Distance(anchorGO.transform.position, transform.position)
+                joint.xMotion = ConfigurableJointMotion.Limited;
+                joint.yMotion = ConfigurableJointMotion.Limited;
+                joint.zMotion = ConfigurableJointMotion.Limited;
+                SoftJointLimit softJointLimit = new SoftJointLimit();
+                softJointLimit.limit = Vector3.Distance(anchorGO.transform.position, transform.position); //TODO: if rope gets shorter while using it, then set limit lower too
+                joint.linearLimit = softJointLimit;
                 joint.connectedBody = anchorRB;
             }
         }

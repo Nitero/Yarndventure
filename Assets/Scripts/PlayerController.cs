@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 2f;
+    private float slowSpeed = 10f;
+    [SerializeField]
+    private float fastSpeed = 20f;
+    private float moveSpeed;
     private Rigidbody rb;
     private CameraController cam;
 
@@ -15,28 +18,35 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main.GetComponent<CameraController>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+            moveSpeed = fastSpeed;
+        else
+            moveSpeed = slowSpeed;
+    }
 
     void FixedUpdate()
     {
-        float vertInput = Input.GetAxis("Vertical"); //forward, backwards
-        float horInput = Input.GetAxis("Horizontal"); //left, right
-
+        float vertInput = Input.GetAxis("Vertical");
+        float horInput = Input.GetAxis("Horizontal");
 
 
         //Get current orientation of camera to know where pressign W should make ball go
+        //Only x & z values only are wanted, so ignore camera looking into ground
 
-        Vector3 flattendForwardLookDir = Camera.main.transform.forward; //x und z werte, zeigen aber leicht in boden, wie kamera... daher normalisieren um nur auf boden entlang zu bewegen
+        Vector3 flattendForwardLookDir = Camera.main.transform.forward; 
         flattendForwardLookDir.y = 0;
         flattendForwardLookDir.Normalize();
-        //print(flattendForwardLookDir);
 
         Vector3 rightMoveDir = Vector3.Cross(Vector3.up, flattendForwardLookDir);
 
         Vector3 moveDir = (flattendForwardLookDir * vertInput) + (rightMoveDir * horInput);
         moveDir.Normalize();
 
-        rb.AddForce(moveDir * moveSpeed, ForceMode.Force); //Acceleration //Impulse //or change mass? //https://answers.unity.com/questions/789917/difference-and-uses-of-rigidbody-force-modes.html
+        rb.AddForce(moveDir * moveSpeed, ForceMode.Force);                                      //https://answers.unity.com/questions/789917/difference-and-uses-of-rigidbody-force-modes.html
 
-        //TODO: better controlls... dont use addforce? more gravity?
+
+        //TODO: better controlls... dont use addforce? more gravity? or change mass? 
     }
 }

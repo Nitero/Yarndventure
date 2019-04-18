@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Transform ballToFollow;
 
-    [SerializeField] private float lookSpeed = 3; //maybe slider
+    [SerializeField] private float lookSpeed = 3; //slider instead?
     [SerializeField] private float horizontalCameraOffset = 3;
     [SerializeField] private float verticalCameraOffset = 3;
 
@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
         lockMouse();
     }
 
-    void Update() //TODO: Maybe Late update?
+    void Update()
     {
         // Rotate around ball horizontally (Deternibes what is forward)
         transform.RotateAround(ballToFollow.position, Vector3.up, Input.GetAxis("Mouse X"));

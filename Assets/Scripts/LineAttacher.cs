@@ -18,6 +18,7 @@ public class LineAttacher : MonoBehaviour
 
     void LateUpdate()
     {
+        line.SetPosition(0, transform.position);
         line.SetPosition(1, attachedObj.position);
     }
 }
