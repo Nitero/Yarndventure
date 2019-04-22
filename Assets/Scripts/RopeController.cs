@@ -20,7 +20,7 @@ public class RopeController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && joint == null)
+        if (Input.GetMouseButtonDown(0) && joint == null)
         {
 
             RaycastHit hit;
@@ -42,10 +42,19 @@ public class RopeController : MonoBehaviour
                 joint.yMotion = ConfigurableJointMotion.Limited;
                 joint.zMotion = ConfigurableJointMotion.Limited;
                 SoftJointLimit softJointLimit = new SoftJointLimit();
-                softJointLimit.limit = Vector3.Distance(anchorGO.transform.position, transform.position); //TODO: if rope gets shorter while using it, then set limit lower too
+                softJointLimit.limit = Vector3.Distance(anchorGO.transform.position, transform.position);
                 joint.linearLimit = softJointLimit;
                 joint.connectedBody = anchorRB;
             }
+        }
+
+        if (Input.GetMouseButton(0) && joint != null) //While held down the rope can get shorter, but not longer 
+        {
+            SoftJointLimit softJointLimit = new SoftJointLimit();
+            softJointLimit.limit = Vector3.Distance(anchorGO.transform.position, transform.position);
+            joint.linearLimit = softJointLimit;
+
+            //TODO: Maybe shrink over time or with mouse wheel manually?
         }
 
         if (Input.GetMouseButtonUp(0))

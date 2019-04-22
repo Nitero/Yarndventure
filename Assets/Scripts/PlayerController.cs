@@ -8,6 +8,12 @@ public class PlayerController : MonoBehaviour
     private float slowSpeed = 10f;
     [SerializeField]
     private float fastSpeed = 20f;
+
+    [SerializeField]
+    private float drag = 3f;
+    [SerializeField]
+    private float dragWithRope = 0f;
+
     private float moveSpeed;
     private Rigidbody rb;
     private CameraController cam;
@@ -24,6 +30,11 @@ public class PlayerController : MonoBehaviour
             moveSpeed = fastSpeed;
         else
             moveSpeed = slowSpeed;
+
+        if (Input.GetMouseButton(0))
+            rb.drag = dragWithRope;
+        else
+            rb.drag = drag; //maybe after using rope, slowly go down to normal drag
     }
 
     void FixedUpdate()
