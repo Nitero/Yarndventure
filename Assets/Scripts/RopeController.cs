@@ -59,8 +59,14 @@ public class RopeController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            Destroy(joint);
-            anchorGO.SetActive(false);
+            destroy();
         }
+    }
+
+
+    public void destroy()
+    {
+        Destroy(joint);
+        anchorGO.SetActive(false);
     }
 }

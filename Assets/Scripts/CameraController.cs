@@ -11,7 +11,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float horizontalCameraOffset = 3;
     [SerializeField] private float verticalCameraOffset = 3;
 
-
     void Start()
     {
         lockMouse();
@@ -36,6 +35,11 @@ public class CameraController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void resetCamera()
+    {
+        transform.rotation = Quaternion.identity;
     }
 
 }

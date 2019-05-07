@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    private RopeController rope;
+    [SerializeField]
+    private float airVelocityMax = 10f;
     [SerializeField]
     private float slowSpeed = 10f;
     [SerializeField]
@@ -21,6 +25,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rope = GetComponent<RopeController>();
         cam = Camera.main.GetComponent<CameraController>();
     }
 
@@ -58,6 +63,32 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(moveDir * moveSpeed, ForceMode.Force);                                      //https://answers.unity.com/questions/789917/difference-and-uses-of-rigidbody-force-modes.html
 
 
+        //Limit horizontal velocity (also do same for air? but with a little faster?)
+        /*var horMove = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        if (horMove.magnitude > moveSpeed)
+            rb.velocity = horMove.normalized * moveSpeed;
+        rb.velocity = horMove + new Vector3(0, rb.velocity.y, 0);*/
+
+
         //TODO: better controlls... dont use addforce? more gravity? or change mass? 
+    }
+
+    public void stopMovement()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+    }
+    public void destroyRope()
+    {
+        rope.destroy();
+    }
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Goal")
+            GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>().levelCleared();
     }
 }
