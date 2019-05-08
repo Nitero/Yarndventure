@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6753505650894494949}
   - component: {fileID: 6753505650894494948}
+  - component: {fileID: 419824426335231449}
   m_Layer: 0
-  m_Name: Gameplay Manager
+  m_Name: Gameplay Managers
   m_TagString: GameplayManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,3 +48,26 @@ MonoBehaviour:
   camera: {fileID: 0}
   fallDeath: -15
   holdRespawnDelay: 0.25
+--- !u!114 &419824426335231449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753505650894494951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435dfd9d664c13a4ab5ae7f06309540b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCube: {fileID: 6486761636935501649, guid: 406899ca09dce1e4689bbffb3bff2677,
+    type: 3}
+  centerOfMap: {x: 0, y: 0, z: 25}
+  safeRadius: 150
+  ammountOfSmallCubes: 50
+  ammountOfCubes: 10
+  maxDist: 200
+  fogPosition: -15
+  seed: 0
+  rand: 1
+  seedByLevel: 0

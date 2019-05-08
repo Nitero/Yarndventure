@@ -44,5 +44,6 @@ public class RopeMeshController : MonoBehaviour
             else
                 transform.GetChild(i).gameObject.SetActive(false);
         }
+
     }
 }

@@ -38,6 +38,7 @@ public class GameplayManager : MonoBehaviour
         player.transform.position = spawnPos;
         player.stopMovement();
         player.destroyRope();
+        player.clearLine();
         camera.resetCamera();
     }
 

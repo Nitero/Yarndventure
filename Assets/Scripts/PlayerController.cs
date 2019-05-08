@@ -83,7 +83,10 @@ public class PlayerController : MonoBehaviour
     {
         rope.destroy();
     }
-
+    public void clearLine()
+    {
+        GetComponentInChildren<TrailRenderer>().Clear();
+    }
 
 
     private void OnTriggerEnter(Collider other)
