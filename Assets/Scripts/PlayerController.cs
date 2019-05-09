@@ -1,9 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
 
     private RopeController rope;
     [SerializeField]
@@ -18,28 +17,42 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float dragWithRope = 0f;
 
+    private Vector3 pos;
     private float moveSpeed;
+    private float currentSpeed;
     private Rigidbody rb;
     private CameraController cam;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        rope = GetComponent<RopeController>();
-        cam = Camera.main.GetComponent<CameraController>();
+    const float EPSILON = 0.005f;
+
+    void Start () {
+        rb = GetComponent<Rigidbody> ();
+        rope = GetComponent<RopeController> ();
+        cam = Camera.main.GetComponent<CameraController> ();
+        pos = transform.position;
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Space))
-            moveSpeed = fastSpeed;
-        else
-            moveSpeed = slowSpeed;
+    private void Update () {
 
-        if (Input.GetMouseButton(0))
+        currentSpeed = (transform.position - pos).magnitude;
+        pos = transform.position;
+
+        if (Input.GetKey (KeyCode.Space) && Input.GetKey (KeyCode.W)) {
+            moveSpeed = fastSpeed;
+        } else if (Input.GetKey (KeyCode.W)) {
+            moveSpeed = slowSpeed;
+        // }  else if (Input.anyKey == false && currentSpeed >= EPSILON) {     
+// maybe a formular for slowing down slowly, when no key is pressed?
+        } else if (Input.anyKey == false && currentSpeed < EPSILON) {
+            rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        }
+
+        if (Input.GetMouseButton (0))
             rb.drag = dragWithRope;
         else
             rb.drag = drag; //maybe after using rope, slowly go down to normal drag
+
     }
 
     void FixedUpdate()
