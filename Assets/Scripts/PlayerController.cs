@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
-
+public class PlayerController : MonoBehaviour
+{
     private RopeController rope;
     [SerializeField]
     private float airVelocityMax = 10f;
@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float dragWithRope = 0f;
 
-
     private Vector3 pos;
     private float moveSpeed;
     private float currentSpeed;
@@ -27,17 +26,19 @@ public class PlayerController : MonoBehaviour {
 
     const float EPSILON = 0.005f;
 
-    void Start () {
-        rb = GetComponent<Rigidbody> ();
-        rope = GetComponent<RopeController> ();
-        cam = Camera.main.GetComponent<CameraController> ();
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rope = GetComponent<RopeController>();
+        cam = Camera.main.GetComponent<CameraController>();
         pos = transform.position;
         activateMovement = true;
     }
 
-    private void Update () {
-
-        if(activateMovement) {
+    private void Update()
+    {
+        if (activateMovement)
+        {
             currentSpeed = (transform.position - pos).magnitude;
             pos = transform.position;
 
@@ -58,9 +59,13 @@ public class PlayerController : MonoBehaviour {
             }
 
             if (Input.GetMouseButton(0))
+            {
                 rb.drag = dragWithRope;
+            }
             else
+            {
                 rb.drag = drag; //maybe after using rope, slowly go down to normal drag
+            }
         }
     }
 
@@ -69,11 +74,10 @@ public class PlayerController : MonoBehaviour {
         float vertInput = Input.GetAxis("Vertical");
         float horInput = Input.GetAxis("Horizontal");
 
-
         //Get current orientation of camera to know where pressign W should make ball go
         //Only x & z values only are wanted, so ignore camera looking into ground
 
-        Vector3 flattendForwardLookDir = Camera.main.transform.forward; 
+        Vector3 flattendForwardLookDir = Camera.main.transform.forward;
         flattendForwardLookDir.y = 0;
         flattendForwardLookDir.Normalize();
 
@@ -95,29 +99,32 @@ public class PlayerController : MonoBehaviour {
         //TODO: better controlls... dont use addforce? more gravity? or change mass? 
     }
 
-    public void stopMovement()
+    public void StopMovement()
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.rotation = Quaternion.identity;
-        
+
     }
-    public void destroyRope()
+
+    public void DestroyRope()
     {
-        rope.destroy();
+        rope.Destroy();
     }
-    public void clearLine()
+
+    public void ClearLine()
     {
         GetComponentInChildren<TrailRenderer>().Clear();
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Goal")
-            GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>().levelCleared();
+        {
+            GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>().LevelCleared();
+        }
         activateMovement = false;
-        stopMovement();
-        moveSpeed = 0;        
+        StopMovement();
+        moveSpeed = 0;
     }
 }

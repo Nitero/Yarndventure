@@ -5,7 +5,6 @@ using UnityEngine;
 public class RopeMeshController : MonoBehaviour
 {
     private Transform player;
-
     [SerializeField] private GameObject ropePrefab;
     [SerializeField] private float maxLength = 100;
 
@@ -14,19 +13,17 @@ public class RopeMeshController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         //Initialize rope
-        for (int i = transform.childCount+1; i < maxLength; i++)
+        for (int i = transform.childCount + 1; i < maxLength; i++)
         {
-            var r = Instantiate(ropePrefab, transform.position + Vector3.up * - i, Quaternion.identity);
+            var r = Instantiate(ropePrefab, transform.position + Vector3.up * -i, Quaternion.identity);
             r.transform.parent = transform;
         }
     }
 
-
     void Update()
     {
-        
-    }
 
+    }
 
     void LateUpdate()
     {
@@ -39,11 +36,14 @@ public class RopeMeshController : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            if(Mathf.RoundToInt(dist) > i)
+            if (Mathf.RoundToInt(dist) > i)
+            {
                 transform.GetChild(i).gameObject.SetActive(true);
+            }
             else
+            {
                 transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
-
     }
 }
