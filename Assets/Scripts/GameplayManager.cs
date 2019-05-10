@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameplayManager : MonoBehaviour {
+public class GameplayManager : MonoBehaviour
+{
     [SerializeField] private PlayerController player;
     [SerializeField] private CameraController camera;
     [SerializeField] private ScoreMenu score;
@@ -13,41 +14,54 @@ public class GameplayManager : MonoBehaviour {
 
     private Vector3 spawnPos;
 
-    void Start () {
+    void Start()
+    {
         spawnPos = player.transform.position;
     }
 
-    private void Update () {
-        if (Input.GetKeyDown (KeyCode.R))
-            StartCoroutine (restartTimer ());
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(RestartTimer());
+        }
         else
-            StopCoroutine (restartTimer ());
+        {
+            StopCoroutine(RestartTimer());
+        }
     }
 
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         if (player.transform.position.y < fallDeath)
-            respawnPlayer ();
+        {
+            RespawnPlayer();
+        }
     }
 
-    public void respawnPlayer () {
-        foreach (MovingObject mo in GameObject.FindObjectsOfType<MovingObject> ()) {
-            mo.reset ();
+    public void RespawnPlayer()
+    {
+        foreach (MovingObject mo in GameObject.FindObjectsOfType<MovingObject>())
+        {
+            mo.Reset();
         }
         player.transform.position = spawnPos;
-        player.stopMovement ();
-        player.destroyRope ();
-        player.clearLine ();
-        camera.resetCamera ();
+        player.StopMovement();
+        player.DestroyRope();
+        player.ClearLine();
+        camera.ResetCamera();
     }
 
-    public void levelCleared () {
-        score.gameObject.SetActive (true);
-        score.showScreen ();
-        camera.unlockMouse ();        
+    public void LevelCleared()
+    {
+        score.gameObject.SetActive(true);
+        score.ShowScreen();
+        camera.UnlockMouse();
     }
 
-    private IEnumerator restartTimer () {
-        yield return new WaitForSeconds (holdRespawnDelay);
-        respawnPlayer ();
+    private IEnumerator RestartTimer()
+    {
+        yield return new WaitForSeconds(holdRespawnDelay);
+        RespawnPlayer();
     }
 }

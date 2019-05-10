@@ -21,41 +21,39 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-          
-            float t = Time.time - startTime;
+        float t = Time.time - startTime;
 
-            secondsCount = Time.time - startTime;
+        secondsCount = Time.time - startTime;
 
-            if (secondsCount >= 60)
-            {
-                minuteCount++;
-                startTime = Time.time;
-            }
-            miliseconds = secondsCount - (int)secondsCount;
+        if (secondsCount >= 60)
+        {
+            minuteCount++;
+            startTime = Time.time;
+        }
+        miliseconds = secondsCount - (int)secondsCount;
 
-            timerText.text = getTime();
+        timerText.text = GetTime();
     }
 
-    public string getTime()
+    public string GetTime()
     {
         return minuteCount.ToString() + ":" + ((int)secondsCount).ToString("00") + ":" + (miliseconds * 1000).ToString("000");
     }
 
-    public void resetTime()
+    public void ResetTime()
     {
-       startTime = Time.time;
-       minuteCount = 0;
-       timerText.gameObject.SetActive(true);
+        startTime = Time.time;
+        minuteCount = 0;
+        timerText.gameObject.SetActive(true);
     }
 
-        public void stopTimer()
+    public void StopTimer()
     {
         timerText.gameObject.SetActive(false);
     }
 
-    public void finish()
+    public void Finish()
     {
-         timerText.color = Color.yellow;
-        
+        timerText.color = Color.yellow;
     }
 }

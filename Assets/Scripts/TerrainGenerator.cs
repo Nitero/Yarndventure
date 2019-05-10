@@ -7,7 +7,7 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject defaultCube;
 
     //public Vector3[] safeZone = new Vector3[] {new Vector3(50,0,-50), new Vector3(-50, 0, -50), new Vector3(50, 0, 100), new Vector3(-50, 0, 100) };
-    public Vector3 centerOfMap = new Vector3(0,0,25);
+    public Vector3 centerOfMap = new Vector3(0, 0, 25);
     public float safeRadius = 100;
 
     public int ammountOfSmallCubes = 50;
@@ -24,13 +24,14 @@ public class TerrainGenerator : MonoBehaviour
         //w = safeZone[0].x + safeZone[1].x;
         //h = safeZone[0].z + safeZone[3].z;
 
-
         var par = new GameObject("Environment");
 
         par.layer = 2; //Ignore raycasts
 
-        if(!rand) Random.seed = seed;//(int)System.DateTime.Now.Ticks;
-
+        if (!rand)
+        {
+            Random.seed = seed;//(int)System.DateTime.Now.Ticks;
+        }
 
         for (int i = 0; i < ammountOfCubes; i++)
         {
@@ -38,7 +39,9 @@ public class TerrainGenerator : MonoBehaviour
 
             //Rect rect = new Rect(center.x, center.z, w, h); //safeZone
             while (Vector3.Distance(randPos, centerOfMap) < safeRadius)
+            {
                 randPos = centerOfMap + new Vector3(Random.Range(-maxDist, maxDist), 0, Random.Range(-maxDist, maxDist));
+            }
 
             var c = Instantiate(defaultCube, randPos, Quaternion.identity);
             c.transform.parent = par.transform;
@@ -47,13 +50,14 @@ public class TerrainGenerator : MonoBehaviour
             c.transform.eulerAngles = new Vector3(Random.Range(-10, 10), Random.Range(0, 360), Random.Range(-10, 10));
         }
 
-
         for (int i = 0; i < ammountOfSmallCubes; i++)
         {
             var randPos = centerOfMap + new Vector3(Random.Range(-maxDist, maxDist), 0, Random.Range(-maxDist, maxDist));
 
             while (Vector3.Distance(randPos, centerOfMap) < safeRadius)
+            {
                 randPos = centerOfMap + new Vector3(Random.Range(-maxDist, maxDist), 0, Random.Range(-maxDist, maxDist));
+            }
 
             var c = Instantiate(defaultCube, randPos, Quaternion.identity);
             c.transform.parent = par.transform;
@@ -63,8 +67,4 @@ public class TerrainGenerator : MonoBehaviour
         }
 
     }
-
-
-
-
 }
