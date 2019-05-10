@@ -6,18 +6,33 @@ public class MovingObject : MonoBehaviour
 {
     //Rather use dotween? can work with rb too !!!!!!!!!!!!!!!!!!!!!
 
-    //private Rigidbody rb;
+    private Rigidbody rb;
     public Vector3 direction;
     public float distance; //before turn around
 
+    private Vector3 startPos;
+
     void Start()
     {
-        //rb = GetComponent<Rigidbody>();
+        if(GetComponent<Rigidbody>()) rb = GetComponent<Rigidbody>();
+        startPos = transform.position;
     }
 
 
     void FixedUpdate()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z) + direction * Time.deltaTime;
+        if (Vector3.Distance(startPos, transform.position) >= distance) direction = -direction; 
+
+    }
+
+
+    public void reset()
+    {
+        transform.position = startPos;
+        transform.rotation = Quaternion.identity;
+        if (rb) rb.velocity = Vector3.zero;
+        if (rb) rb.angularVelocity = Vector3.zero;
     }
 }
+

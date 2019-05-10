@@ -35,6 +35,9 @@ public class GameplayManager : MonoBehaviour
 
     public void respawnPlayer()
     {
+        foreach(MovingObject mo in GameObject.FindObjectsOfType<MovingObject>()) 
+            mo.reset();
+
         player.transform.position = spawnPos;
         player.stopMovement();
         player.destroyRope();
