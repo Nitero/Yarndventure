@@ -11,11 +11,13 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float fallDeath = -10;
     [SerializeField] private float holdRespawnDelay = 0.25f;
 
+    private ScreenShakeTest screnshake;
     private Vector3 spawnPos;
 
     void Start()
     {
         spawnPos = player.transform.position;
+        screnshake = Camera.main.GetComponent<ScreenShakeTest>();
         scoreMenu = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreMenu>();
         scoreMenu.gameObject.SetActive(false);
     }
@@ -34,7 +36,7 @@ public class GameplayManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player.transform.position.y < fallDeath)
+        if (player.transform.position.y < fallDeath && player.getMovementState())
         {
             RespawnPlayer();
         }
@@ -42,6 +44,7 @@ public class GameplayManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        screnshake.addShake(Vector2.up, 0.5f);
         foreach (MovingObject mo in GameObject.FindObjectsOfType<MovingObject>())
         {
             mo.Reset();
@@ -57,6 +60,7 @@ public class GameplayManager : MonoBehaviour
     {
         scoreMenu.gameObject.SetActive(true);
         scoreMenu.ShowScreen();
+        scoreMenu.crosshair.enabled = false;
         camera.UnlockMouse();
     }
 

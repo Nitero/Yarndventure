@@ -1089,6 +1089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 0}
+  crosshair: {fileID: 0}
   FinishedTime: {fileID: 5801482382686622892}
 --- !u!1 &5801482382690735832
 GameObject:
@@ -1145,6 +1146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 5801482383288881048}
+  crosshair: {fileID: 8462661651812954098}
   FinishedTime: {fileID: 5801482382686622892}
 --- !u!1 &5801482383288881054
 GameObject:

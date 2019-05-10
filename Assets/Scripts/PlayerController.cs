@@ -106,11 +106,18 @@ public class PlayerController : MonoBehaviour {
         GetComponentInChildren<TrailRenderer> ().Clear ();
     }
 
+    public bool getMovementState()
+    {
+        return activateMovement;
+    }
+
     private void OnTriggerEnter (Collider other) {
         if (other.tag == "Goal") {
             GameObject.FindGameObjectWithTag ("GameplayManager").GetComponent<GameplayManager> ().LevelCleared ();
             activateMovement = false;
-            StopMovement ();
+            //StopMovement ();
+            Camera.main.GetComponent<CameraController>().enabled = false;
+            Camera.main.GetComponent<ScreenShakeTest>().levelCompleted();
             moveSpeed = 0;
         }
 

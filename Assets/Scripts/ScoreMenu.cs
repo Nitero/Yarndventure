@@ -8,6 +8,7 @@ public class ScoreMenu : MonoBehaviour
 {
     [SerializeField]
     public Timer timer;
+    public Image crosshair;
     public Text FinishedTime;
 
     public void ShowScreen()
