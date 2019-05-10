@@ -38,15 +38,16 @@ public class PlayerController : MonoBehaviour {
             currentSpeed = (transform.position - pos).magnitude;
             pos = transform.position;
 
-            if (Input.GetKey (KeyCode.Space) && Input.GetKey (KeyCode.W)) {
+            if (Input.GetKey (KeyCode.Space)){// && Input.GetKey (KeyCode.W)) {
                 moveSpeed = fastSpeed;
-            } else if (Input.GetKey (KeyCode.W)) {
-                moveSpeed = slowSpeed;
                 // }  else if (Input.anyKey == false && currentSpeed >= EPSILON) {     
                 // maybe a formular for slowing down slowly, when no key is pressed?
             } else if (Input.anyKey == false && currentSpeed < EPSILON) {
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
+            }
+            else{
+                moveSpeed = slowSpeed;
             }
 
             if (Input.GetMouseButton (0)) {
@@ -74,6 +75,12 @@ public class PlayerController : MonoBehaviour {
         moveDir.Normalize ();
 
         rb.AddForce (moveDir * moveSpeed, ForceMode.Force); //https://answers.unity.com/questions/789917/difference-and-uses-of-rigidbody-force-modes.html
+
+        //Additional boost on using space (once when pressed)
+        if (Input.GetKeyDown(KeyCode.Space)){
+            rb.AddForce(moveDir * (fastSpeed/4), ForceMode.Impulse);
+        }
+
 
         //Limit horizontal velocity (also do same for air? but with a little faster?)
         /*var horMove = new Vector3(rb.velocity.x, 0, rb.velocity.z);

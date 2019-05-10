@@ -7,8 +7,7 @@ public class GameplayManager : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
     [SerializeField] private CameraController camera;
-    [SerializeField] private ScoreMenu score;
-    [SerializeField] private Timer timer;
+    private ScoreMenu scoreMenu;
     [SerializeField] private float fallDeath = -10;
     [SerializeField] private float holdRespawnDelay = 0.25f;
 
@@ -17,6 +16,8 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         spawnPos = player.transform.position;
+        scoreMenu = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreMenu>();
+        scoreMenu.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -54,8 +55,8 @@ public class GameplayManager : MonoBehaviour
 
     public void LevelCleared()
     {
-        score.gameObject.SetActive(true);
-        score.ShowScreen();
+        scoreMenu.gameObject.SetActive(true);
+        scoreMenu.ShowScreen();
         camera.UnlockMouse();
     }
 
