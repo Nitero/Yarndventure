@@ -27,6 +27,8 @@ public class RopeController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity /*shootRange*/ ) && hit.collider)
             {
                 anchorGO.transform.position = hit.point;
+                anchorGO.GetComponentInChildren<RopeMeshController>().setPlayerStartPos();
+
                 if (hit.transform.GetComponent<MovingObject>())
                 {
                     anchorGO.transform.parent = hit.transform; //TODO: dont let the rope get longer when object pulls away from player
@@ -34,23 +36,23 @@ public class RopeController : MonoBehaviour
                 else
                 {
                     anchorGO.transform.parent = null;
-
-                    anchorGO.SetActive(true);
-                    gameObject.AddComponent<ConfigurableJoint>();
-                    joint = GetComponent<ConfigurableJoint>();
-                    joint.autoConfigureConnectedAnchor = false;
-                    joint.axis = Vector3.zero;
-                    joint.anchor = Vector3.zero;
-                    joint.secondaryAxis = Vector3.zero;
-                    joint.connectedAnchor = Vector3.zero;
-                    joint.xMotion = ConfigurableJointMotion.Limited;
-                    joint.yMotion = ConfigurableJointMotion.Limited;
-                    joint.zMotion = ConfigurableJointMotion.Limited;
-                    SoftJointLimit softJointLimit = new SoftJointLimit();
-                    softJointLimit.limit = Vector3.Distance(anchorGO.transform.position, transform.position);
-                    joint.linearLimit = softJointLimit;
-                    joint.connectedBody = anchorRB;
                 }
+
+                anchorGO.SetActive(true);
+                gameObject.AddComponent<ConfigurableJoint>();
+                joint = GetComponent<ConfigurableJoint>();
+                joint.autoConfigureConnectedAnchor = false;
+                joint.axis = Vector3.zero;
+                joint.anchor = Vector3.zero;
+                joint.secondaryAxis = Vector3.zero;
+                joint.connectedAnchor = Vector3.zero;
+                joint.xMotion = ConfigurableJointMotion.Limited;
+                joint.yMotion = ConfigurableJointMotion.Limited;
+                joint.zMotion = ConfigurableJointMotion.Limited;
+                SoftJointLimit softJointLimit = new SoftJointLimit();
+                softJointLimit.limit = Vector3.Distance(anchorGO.transform.position, transform.position);
+                joint.linearLimit = softJointLimit;
+                joint.connectedBody = anchorRB;
             }
         }
 

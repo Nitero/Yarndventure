@@ -26,9 +26,9 @@ public class GameplayManager : MonoBehaviour
         {
             StartCoroutine(RestartTimer());
         }
-        else
+        if (Input.GetKeyUp(KeyCode.R))
         {
-            StopCoroutine(RestartTimer());
+            StopAllCoroutines();//StopCoroutine(RestartTimer());
         }
     }
 

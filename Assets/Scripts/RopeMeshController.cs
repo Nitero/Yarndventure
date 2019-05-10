@@ -6,7 +6,11 @@ public class RopeMeshController : MonoBehaviour
 {
     private Transform player;
     [SerializeField] private GameObject ropePrefab;
+    [SerializeField] private GameObject ropeEnd;
     [SerializeField] private float maxLength = 100;
+    [SerializeField] private float connectionSpeed = 1; //seconds it takes to get to actual hooked position
+
+    private float currentTotalLength;
 
     void Start()
     {
@@ -27,6 +31,18 @@ public class RopeMeshController : MonoBehaviour
 
     void LateUpdate()
     {
+        //Animate flying from player to anchor position
+        //from: transform.localPosition = -transform.parent.position + player.position;
+        //to:   transform.localPosition = Vector3.zero;
+        float step = currentTotalLength * connectionSpeed * Time.deltaTime;
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, step);
+
+        if (Vector3.Distance(transform.localPosition, Vector3.zero) <= 0.01)
+            ropeEnd.SetActive(true);
+        else
+            ropeEnd.SetActive(false);
+
+
         //Look at rotation to player
         transform.LookAt(player.position);
         transform.eulerAngles += new Vector3(-90, 0, 0);
@@ -45,5 +61,14 @@ public class RopeMeshController : MonoBehaviour
                 transform.GetChild(i).gameObject.SetActive(false);
             }
         }
+    }
+
+
+    public void setPlayerStartPos()
+    {
+        if (player == null) return;
+
+        transform.localPosition = -transform.parent.position + player.position;
+        currentTotalLength = Vector3.Distance(transform.localPosition, Vector3.zero);
     }
 }
