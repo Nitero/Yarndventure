@@ -43,8 +43,7 @@ public class GameplayManager : MonoBehaviour {
     public void levelCleared () {
         score.gameObject.SetActive (true);
         score.showScreen ();
-        camera.unlockMouse ();
-        player.stopMovement ();
+        camera.unlockMouse ();        
     }
 
     private IEnumerator restartTimer () {

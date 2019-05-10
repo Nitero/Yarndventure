@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
     private float currentSpeed;
     private Rigidbody rb;
     private CameraController cam;
+    private bool activateMovement;
 
     const float EPSILON = 0.005f;
 
@@ -31,10 +32,12 @@ public class PlayerController : MonoBehaviour {
         rope = GetComponent<RopeController> ();
         cam = Camera.main.GetComponent<CameraController> ();
         pos = transform.position;
+        activateMovement = true;
     }
 
     private void Update () {
 
+        if(activateMovement) {
             currentSpeed = (transform.position - pos).magnitude;
             pos = transform.position;
 
@@ -58,7 +61,7 @@ public class PlayerController : MonoBehaviour {
                 rb.drag = dragWithRope;
             else
                 rb.drag = drag; //maybe after using rope, slowly go down to normal drag
-        
+        }
     }
 
     void FixedUpdate()
@@ -113,9 +116,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.tag == "Goal")
             GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>().levelCleared();
-        moveSpeed = 0;
-        fastSpeed = 0;
-        slowSpeed = 0;
+        activateMovement = false;
         stopMovement();
+        moveSpeed = 0;        
     }
 }
