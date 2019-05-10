@@ -14,8 +14,7 @@ public class ScoreMenu : MonoBehaviour
     public void ShowScreen()
     {
         FinishedTime.text = timer.GetTime();
-        FinishedTime.gameObject.SetActive(true);
-        timer.StopTimer();
+        FinishedTime.gameObject.SetActive(true);        
     }
 
     public void PlayNextLevel()

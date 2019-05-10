@@ -24,13 +24,13 @@ public class Timer : MonoBehaviour
         float t = Time.time - startTime;
 
         secondsCount = Time.time - startTime;
+        miliseconds = secondsCount - (int)secondsCount;
 
         if (secondsCount >= 60)
         {
             minuteCount++;
             startTime = Time.time;
         }
-        miliseconds = secondsCount - (int)secondsCount;
 
         timerText.text = GetTime();
     }
@@ -44,7 +44,6 @@ public class Timer : MonoBehaviour
     {
         startTime = Time.time;
         minuteCount = 0;
-        timerText.gameObject.SetActive(true);
     }
 
     public void StopTimer()

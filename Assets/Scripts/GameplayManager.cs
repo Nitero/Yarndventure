@@ -7,12 +7,15 @@ public class GameplayManager : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
     [SerializeField] private CameraController camera;
+    [SerializeField] private Timer timer;
     private ScoreMenu scoreMenu;
     [SerializeField] private float fallDeath = -10;
     [SerializeField] private float holdRespawnDelay = 0.25f;
+    
 
     private ScreenShakeTest screnshake;
     private Vector3 spawnPos;
+    
 
     void Start()
     {
@@ -54,6 +57,7 @@ public class GameplayManager : MonoBehaviour
         player.DestroyRope();
         player.ClearLine();
         camera.ResetCamera();
+        timer.ResetTime();
     }
 
     public void LevelCleared()
@@ -62,6 +66,7 @@ public class GameplayManager : MonoBehaviour
         scoreMenu.ShowScreen();
         scoreMenu.crosshair.enabled = false;
         camera.UnlockMouse();
+        timer.StopTimer();
     }
 
     private IEnumerator RestartTimer()
