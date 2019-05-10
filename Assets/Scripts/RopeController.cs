@@ -29,6 +29,10 @@ public class RopeController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity/*shootRange*/) && hit.collider)
             {
                 anchorGO.transform.position = hit.point;
+                if (hit.transform.GetComponent<MovingObject>())
+                    anchorGO.transform.parent = hit.transform; //TODO: dont let the rope get longer when object pulls away from player
+                else
+                    anchorGO.transform.parent = null;
 
                 anchorGO.SetActive(true);
                 gameObject.AddComponent<ConfigurableJoint>();
