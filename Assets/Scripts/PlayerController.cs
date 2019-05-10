@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Goal")
         {
-            GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>().levelCleared();
+            GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>().LevelCleared();
         }
         activateMovement = false;
         StopMovement();
