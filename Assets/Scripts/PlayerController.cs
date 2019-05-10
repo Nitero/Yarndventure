@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float dragWithRope = 0f;
 
+
     private Vector3 pos;
     private float moveSpeed;
     private float currentSpeed;
@@ -34,25 +35,30 @@ public class PlayerController : MonoBehaviour {
 
     private void Update () {
 
-        currentSpeed = (transform.position - pos).magnitude;
-        pos = transform.position;
+            currentSpeed = (transform.position - pos).magnitude;
+            pos = transform.position;
 
-        if (Input.GetKey (KeyCode.Space) && Input.GetKey (KeyCode.W)) {
-            moveSpeed = fastSpeed;
-        } else if (Input.GetKey (KeyCode.W)) {
-            moveSpeed = slowSpeed;
-        // }  else if (Input.anyKey == false && currentSpeed >= EPSILON) {     
-// maybe a formular for slowing down slowly, when no key is pressed?
-        } else if (Input.anyKey == false && currentSpeed < EPSILON) {
-            rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        }
+            if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.W))
+            {
+                moveSpeed = fastSpeed;
+            }
+            else if (Input.GetKey(KeyCode.W))
+            {
+                moveSpeed = slowSpeed;
+                // }  else if (Input.anyKey == false && currentSpeed >= EPSILON) {     
+                // maybe a formular for slowing down slowly, when no key is pressed?
+            }
+            else if (Input.anyKey == false && currentSpeed < EPSILON)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
 
-        if (Input.GetMouseButton (0))
-            rb.drag = dragWithRope;
-        else
-            rb.drag = drag; //maybe after using rope, slowly go down to normal drag
-
+            if (Input.GetMouseButton(0))
+                rb.drag = dragWithRope;
+            else
+                rb.drag = drag; //maybe after using rope, slowly go down to normal drag
+        
     }
 
     void FixedUpdate()
@@ -91,6 +97,7 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.rotation = Quaternion.identity;
+        
     }
     public void destroyRope()
     {
@@ -106,5 +113,9 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.tag == "Goal")
             GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>().levelCleared();
+        moveSpeed = 0;
+        fastSpeed = 0;
+        slowSpeed = 0;
+        stopMovement();
     }
 }

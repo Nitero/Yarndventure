@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RopeController : MonoBehaviour
-{
+public class RopeController : MonoBehaviour {
     [SerializeField]
     private float shootRange = 100;
     [SerializeField]
@@ -11,32 +10,27 @@ public class RopeController : MonoBehaviour
     private Rigidbody anchorRB;
     private ConfigurableJoint joint;
 
-    void Start()
-    {
-        joint = GetComponent<ConfigurableJoint>();
-        anchorRB = anchorGO.GetComponent<Rigidbody>();
+    void Start () {
+        joint = GetComponent<ConfigurableJoint> ();
+        anchorRB = anchorGO.GetComponent<Rigidbody> ();
     }
 
-
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && joint == null)
-        {
+    void Update () {
+        if (Input.GetMouseButtonDown (0) && joint == null) {
 
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity/*shootRange*/) && hit.collider)
-            {
+            if (Physics.Raycast (ray, out hit, Mathf.Infinity /*shootRange*/ ) && hit.collider) {
                 anchorGO.transform.position = hit.point;
-                if (hit.transform.GetComponent<MovingObject>())
+                if (hit.transform.GetComponent<MovingObject> ())
                     anchorGO.transform.parent = hit.transform; //TODO: dont let the rope get longer when object pulls away from player
                 else
                     anchorGO.transform.parent = null;
 
-                anchorGO.SetActive(true);
-                gameObject.AddComponent<ConfigurableJoint>();
-                joint = GetComponent<ConfigurableJoint>();
+                anchorGO.SetActive (true);
+                gameObject.AddComponent<ConfigurableJoint> ();
+                joint = GetComponent<ConfigurableJoint> ();
                 joint.autoConfigureConnectedAnchor = false;
                 joint.axis = Vector3.zero;
                 joint.anchor = Vector3.zero;
@@ -45,32 +39,29 @@ public class RopeController : MonoBehaviour
                 joint.xMotion = ConfigurableJointMotion.Limited;
                 joint.yMotion = ConfigurableJointMotion.Limited;
                 joint.zMotion = ConfigurableJointMotion.Limited;
-                SoftJointLimit softJointLimit = new SoftJointLimit();
-                softJointLimit.limit = Vector3.Distance(anchorGO.transform.position, transform.position);
+                SoftJointLimit softJointLimit = new SoftJointLimit ();
+                softJointLimit.limit = Vector3.Distance (anchorGO.transform.position, transform.position);
                 joint.linearLimit = softJointLimit;
                 joint.connectedBody = anchorRB;
             }
         }
 
-        if (Input.GetMouseButton(0) && joint != null) //While held down the rope can get shorter, but not longer 
+        if (Input.GetMouseButton (0) && joint != null) //While held down the rope can get shorter, but not longer 
         {
-            SoftJointLimit softJointLimit = new SoftJointLimit();
-            softJointLimit.limit = Vector3.Distance(anchorGO.transform.position, transform.position);
+            SoftJointLimit softJointLimit = new SoftJointLimit ();
+            softJointLimit.limit = Vector3.Distance (anchorGO.transform.position, transform.position);
             joint.linearLimit = softJointLimit;
 
             //TODO: Maybe shrink over time or with mouse wheel manually?
         }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            destroy();
+        if (Input.GetMouseButtonUp (0)) {
+            destroy ();
         }
     }
 
-
-    public void destroy()
-    {
-        Destroy(joint);
-        anchorGO.SetActive(false);
+    public void destroy () {
+        Destroy (joint);
+        anchorGO.SetActive (false);
     }
 }

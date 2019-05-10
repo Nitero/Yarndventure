@@ -545,11 +545,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 1622163404634676697, guid: 02bda659a1524d74ca21f2c7c1b45311,
-        type: 3}
-      propertyPath: ballToFollow
-      value: 
-      objectReference: {fileID: 113954453}
     - target: {fileID: 1622163404634676698, guid: 02bda659a1524d74ca21f2c7c1b45311,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -605,6 +600,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1622163404634676697, guid: 02bda659a1524d74ca21f2c7c1b45311,
+        type: 3}
+      propertyPath: ballToFollow
+      value: 
+      objectReference: {fileID: 113954453}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02bda659a1524d74ca21f2c7c1b45311, type: 3}
 --- !u!1 &1150796514
@@ -1790,16 +1790,6 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 522387557}
-    - target: {fileID: 419824426335231449, guid: f343b8a70b7293445a1bc17f9e43007e,
-        type: 3}
-      propertyPath: centerOfMap.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 419824426335231449, guid: f343b8a70b7293445a1bc17f9e43007e,
-        type: 3}
-      propertyPath: safeRadius
-      value: 200
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f343b8a70b7293445a1bc17f9e43007e, type: 3}
 --- !u!1001 &7559029490267417172

@@ -31,10 +31,16 @@ public class CameraController : MonoBehaviour
     }
 
 
-    private void lockMouse() //TODO: Move this to somewhere else
+    public void lockMouse() //TODO: Move this to somewhere else
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void unlockMouse()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void resetCamera()
