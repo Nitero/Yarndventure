@@ -18,14 +18,14 @@ public class Timer : MonoBehaviour
         startTime = Time.time;
         bestTimes = SaveLoadManager.LoadTimes();
         bestTime = bestTimes[SceneManager.GetActiveScene().buildIndex];
-        // printTimes();
+        printTimes();
     }
 
     private void printTimes()
     {
         for (int i = 0; i < bestTimes.Length; i++)
         {
-            print(i + ". " + bestTimes[i]);
+            print((i+1) + ".Level: " + bestTimes[i]);
         }
     }
 
