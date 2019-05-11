@@ -6,26 +6,22 @@ using UnityEngine.UI;
 
 public class ScoreMenu : MonoBehaviour
 {
-    [SerializeField]
-    public Image crosshair;
-    public Timer timer;
-    public Text FinishedTime;
-    public Text BestTime;
+    [SerializeField] private Text FinishedTime;
+    [SerializeField] private Text BestTime;
     private float bestTime = float.MaxValue;
 
-    public void ShowScreen()
+    public void ShowScreen(float finishedTime)
     {
-        float finishedTime = timer.GetCurrentTime();
         if (IsNewBestTime(finishedTime))
         {
             bestTime = finishedTime;
-            BestTime.text = "New Record! " + timer.TimeToString(bestTime);
+            BestTime.text = "New Record! " + Timer.TimeToString(bestTime);
             FinishedTime.gameObject.SetActive(false);
         }
         else
         {
-            FinishedTime.text = "Your Time: " + timer.TimeToString(finishedTime);
-            BestTime.text = "Current Record: " + timer.TimeToString(bestTime);
+            FinishedTime.text = "Your Time: " + Timer.TimeToString(finishedTime);
+            BestTime.text = "Current Record: " + Timer.TimeToString(bestTime);
         }
     }
 

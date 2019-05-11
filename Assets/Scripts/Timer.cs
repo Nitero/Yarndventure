@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Timer : MonoBehaviour
 {
-    public Text timerText;
+    [SerializeField] private Text timerText;
     private float startTime;
     private float timeCounter;
 
@@ -23,7 +22,7 @@ public class Timer : MonoBehaviour
         timerText.text = TimeToString(timeCounter);
     }
 
-    public string TimeToString(float time)
+    public static string TimeToString(float time)
     {
         int minutes = (int) (time/60);
         int seconds = (int) time % 60;

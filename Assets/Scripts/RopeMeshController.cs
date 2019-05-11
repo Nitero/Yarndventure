@@ -24,11 +24,6 @@ public class RopeMeshController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
-
     void LateUpdate()
     {
         //Animate flying from player to anchor position
@@ -66,7 +61,6 @@ public class RopeMeshController : MonoBehaviour
             }
         }
     }
-
 
     public void setPlayerStartPos()
     {
