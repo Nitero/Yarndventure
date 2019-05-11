@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    public Text timerText;
+    [SerializeField] private Text timerText;
     private float startTime;
     private float timeCounter;
     private float[] bestTimes;
@@ -36,7 +36,7 @@ public class Timer : MonoBehaviour
         timerText.text = TimeToString(timeCounter);
     }
 
-    public string TimeToString(float time)
+    public static string TimeToString(float time)
     {
         int minutes = (int) (time/60);
         int seconds = (int) time % 60;
@@ -60,13 +60,13 @@ public class Timer : MonoBehaviour
         timerText.gameObject.SetActive(false);
     }
 
-    public void SaveTime(float newBestTime, int buildIndex)
+    public static void SaveTime(float newBestTime, int buildIndex)
     {
         bestTimes[buildIndex] = newBestTime;
         SaveLoadManager.SaveTimes(bestTimes);
     }
 
-    public float getBestTime()
+    public static float getBestTime()
     {
         return bestTime;
     }
