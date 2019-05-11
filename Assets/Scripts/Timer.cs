@@ -23,13 +23,11 @@ public class Timer : MonoBehaviour
         timerText.text = TimeToString(timeCounter);
     }
 
-    public string TimeToString(float seconds)
+    public string TimeToString(float time)
     {
-        int minutes = 0;
-        float miliseconds = 0;
-        
-        miliseconds = seconds - (int)seconds;
-        minutes = (int) (seconds/60);
+        int minutes = (int) (time/60);
+        int seconds = (int) time % 60;
+        float miliseconds = time - (int) time;
 
         return minutes.ToString() + ":" + ((int)seconds).ToString("00") + ":" + (miliseconds * 1000).ToString("000");
     }
