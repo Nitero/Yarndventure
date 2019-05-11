@@ -1,22 +1,26 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreMenu : MonoBehaviour
 {
+    private float bestTime;
     [SerializeField] private Text FinishedTime;
     [SerializeField] private Text BestTime;
-    private float bestTime = float.MaxValue;
 
     public void ShowScreen(float finishedTime)
     {
+        bestTime = timer.GetBestTime();
+
+        float finishedTime = timer.GetCurrentTime();
         if (IsNewBestTime(finishedTime))
         {
             bestTime = finishedTime;
             BestTime.text = "New Record! " + Timer.TimeToString(bestTime);
             FinishedTime.gameObject.SetActive(false);
+            timer.SaveTime(bestTime, SceneManager.GetActiveScene().buildIndex);
         }
         else
         {
@@ -36,7 +40,7 @@ public class ScoreMenu : MonoBehaviour
 
     public void PlayNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // after the last level, you go to the MainMenu
     }
 
     public void PlayAgain()
@@ -46,6 +50,6 @@ public class ScoreMenu : MonoBehaviour
 
     public void GoToMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(Application.levelCount - 1);
     }
 }
