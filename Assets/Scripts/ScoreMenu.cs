@@ -1,37 +1,41 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreMenu : MonoBehaviour
 {
+    private float bestTime;
+    
     [SerializeField]
     public Image crosshair;
     public Timer timer;
     public Text FinishedTime;
     public Text BestTime;
-    private float bestTime = float.MaxValue;
-
+    
     public void ShowScreen()
     {
+        bestTime = timer.getBestTime();
+
         float finishedTime = timer.GetCurrentTime();
-        if (IsNewBestTime(finishedTime))
-        {
+        if(IsNewBestTime(finishedTime)) 
+        {            
             bestTime = finishedTime;
             BestTime.text = "New Record! " + timer.TimeToString(bestTime);
             FinishedTime.gameObject.SetActive(false);
-        }
-        else
+            timer.SaveTime(bestTime, SceneManager.GetActiveScene().buildIndex);
+        } 
+        else 
         {
             FinishedTime.text = "Your Time: " + timer.TimeToString(finishedTime);
-            BestTime.text = "Current Record: " + timer.TimeToString(bestTime);
+            BestTime.text = "Current Record: " + timer.TimeToString(bestTime);                 
         }
     }
 
-    private bool IsNewBestTime(float newTime)
+        private bool IsNewBestTime(float newTime)
     {
-        if (newTime < bestTime)
+        if(newTime < bestTime)
         {
             return true;
         }
@@ -40,7 +44,7 @@ public class ScoreMenu : MonoBehaviour
 
     public void PlayNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // after the last level, you go to the MainMenu
     }
 
     public void PlayAgain()
@@ -50,6 +54,6 @@ public class ScoreMenu : MonoBehaviour
 
     public void GoToMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(Application.levelCount-1);
     }
 }
