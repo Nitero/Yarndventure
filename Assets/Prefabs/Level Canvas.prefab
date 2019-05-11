@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 0}
-  timer: {fileID: 5801482383288881048}
+  timer: {fileID: 0}
   FinishedTime: {fileID: 5801482382686622892}
   BestTime: {fileID: 0}
 --- !u!1 &5801482382690735832
@@ -1306,7 +1306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 0}
-  timer: {fileID: 5801482383288881048}
+  timer: {fileID: 0}
   FinishedTime: {fileID: 0}
   BestTime: {fileID: 3923811406339593476}
 --- !u!1 &8462661651812954096

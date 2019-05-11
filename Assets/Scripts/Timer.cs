@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
 
     private void printTimes()
     {
-        for(int i = 0; i < bestTimes.Length; i++)
+        for (int i = 0; i < bestTimes.Length; i++)
         {
             print(i + ". " + bestTimes[i]);
         }
@@ -38,9 +38,9 @@ public class Timer : MonoBehaviour
 
     public static string TimeToString(float time)
     {
-        int minutes = (int) (time/60);
-        int seconds = (int) time % 60;
-        float miliseconds = time - (int) time;
+        int minutes = (int)(time / 60);
+        int seconds = (int)time % 60;
+        float miliseconds = time - (int)time;
 
         return minutes.ToString() + ":" + (seconds.ToString("00")) + ":" + (miliseconds * 1000).ToString("000");
     }
@@ -60,13 +60,13 @@ public class Timer : MonoBehaviour
         timerText.gameObject.SetActive(false);
     }
 
-    public static void SaveTime(float newBestTime, int buildIndex)
+    public void SaveTime(float newBestTime, int buildIndex)
     {
         bestTimes[buildIndex] = newBestTime;
         SaveLoadManager.SaveTimes(bestTimes);
     }
 
-    public static float getBestTime()
+    public float GetBestTime()
     {
         return bestTime;
     }
@@ -75,8 +75,6 @@ public class Timer : MonoBehaviour
     {
         timerText.color = Color.yellow;
     }
-
-
 
     // This method is unfinished!
     // Intention: checking how many scenes contain "level"
@@ -94,7 +92,5 @@ public class Timer : MonoBehaviour
         //     {
         //         if(SceneManager.GetSceneByBuildIndex(2).name)
         //     }
-
-
     }
 }

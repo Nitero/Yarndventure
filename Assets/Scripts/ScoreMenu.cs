@@ -7,21 +7,22 @@ using UnityEngine.SceneManagement;
 public class ScoreMenu : MonoBehaviour
 {
     private float bestTime;
-    
+    public Image crosshair;
+    public Timer timer;
     [SerializeField] private Text FinishedTime;
     [SerializeField] private Text BestTime;
 
-    public void ShowScreen(float finishedTime)
+    public void ShowScreen()
     {
-        bestTime = Timer.getBestTime();
+        bestTime = timer.GetBestTime();
 
-        float finishedTime = Timer.GetCurrentTime();
-        if(IsNewBestTime(finishedTime))
+        float finishedTime = timer.GetCurrentTime();
+        if (IsNewBestTime(finishedTime))
         {
             bestTime = finishedTime;
             BestTime.text = "New Record! " + Timer.TimeToString(bestTime);
             FinishedTime.gameObject.SetActive(false);
-            Timer.SaveTime(bestTime, SceneManager.GetActiveScene().buildIndex);
+            timer.SaveTime(bestTime, SceneManager.GetActiveScene().buildIndex);
         }
         else
         {
@@ -30,9 +31,9 @@ public class ScoreMenu : MonoBehaviour
         }
     }
 
-        private bool IsNewBestTime(float newTime)
+    private bool IsNewBestTime(float newTime)
     {
-        if(newTime < bestTime)
+        if (newTime < bestTime)
         {
             return true;
         }
@@ -51,6 +52,6 @@ public class ScoreMenu : MonoBehaviour
 
     public void GoToMenu()
     {
-        SceneManager.LoadScene(Application.levelCount-1);
+        SceneManager.LoadScene(Application.levelCount - 1);
     }
 }
