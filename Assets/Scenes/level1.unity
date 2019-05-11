@@ -282,18 +282,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &667885396 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5801482382686622892, guid: 4440d40d34767614280bc657fce401c8,
-    type: 3}
-  m_PrefabInstance: {fileID: 5801482382679995045}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &768350582 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5998910818941445896, guid: 78c394dd3090ed046a791aab97ea297e,
@@ -725,11 +713,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 5801482382690735834, guid: 4440d40d34767614280bc657fce401c8,
-        type: 3}
-      propertyPath: FinishedTime
-      value: 
-      objectReference: {fileID: 667885396}
     - target: {fileID: 5801482381881110799, guid: 4440d40d34767614280bc657fce401c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -870,16 +853,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5801482382686622894, guid: 4440d40d34767614280bc657fce401c8,
-        type: 3}
-      propertyPath: timer
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5801482382686622894, guid: 4440d40d34767614280bc657fce401c8,
-        type: 3}
-      propertyPath: FinishedTime
-      value: 
-      objectReference: {fileID: 667885396}
     - target: {fileID: 5801482381513714695, guid: 4440d40d34767614280bc657fce401c8,
         type: 3}
       propertyPath: m_havePropertiesChanged
