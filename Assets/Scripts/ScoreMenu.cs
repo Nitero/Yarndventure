@@ -11,12 +11,29 @@ public class ScoreMenu : MonoBehaviour
     public Image crosshair;
     public Text FinishedTime;
     public Text BestTime;
+    private float bestTime = float.MaxValue;
     
-
     public void ShowScreen()
     {
-        FinishedTime.text = "Your Time: " + timer.TimeToString(timer.getCurrentTime());
-        FinishedTime.gameObject.SetActive(true);
+        float finishedTime = timer.getCurrentTime();
+        if(IsNewBestTime(finishedTime)) 
+        {            
+            bestTime = finishedTime;            
+            BestTime.text = "New Record! " + timer.TimeToString(bestTime);            
+            FinishedTime.gameObject.SetActive(false);
+        } else {
+            FinishedTime.text = "Your Time: " + timer.TimeToString(finishedTime);
+            BestTime.text = "Current Record: " + timer.TimeToString(bestTime);     
+        }
+    }
+
+        private bool IsNewBestTime(float newTime)
+    {
+        if(newTime < bestTime)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void PlayNextLevel()

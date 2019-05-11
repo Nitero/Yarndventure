@@ -29,7 +29,7 @@ public class Timer : MonoBehaviour
         int seconds = (int) time % 60;
         float miliseconds = time - (int) time;
 
-        return minutes.ToString() + ":" + ((int)seconds).ToString("00") + ":" + (miliseconds * 1000).ToString("000");
+        return minutes.ToString() + ":" + (seconds.ToString("00")) + ":" + (miliseconds * 1000).ToString("000");
     }
 
     public float getCurrentTime()
