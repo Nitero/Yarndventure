@@ -13,7 +13,7 @@ public class ScoreMenu : MonoBehaviour
 
     public void ShowScreen()
     {
-        FinishedTime.text = timer.GetTime();
+        FinishedTime.text = "Your Time: " + timer.GetTime();
         FinishedTime.gameObject.SetActive(true);        
     }
 

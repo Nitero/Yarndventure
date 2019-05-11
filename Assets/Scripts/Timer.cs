@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     public Text timerText;
     private float startTime;
     private int minuteCount;
-    private float secondsCount;
+    private float secondsCount; // it includes the miliseconds as well
     private float miliseconds;
 
     // Start is called before the first  frame update
