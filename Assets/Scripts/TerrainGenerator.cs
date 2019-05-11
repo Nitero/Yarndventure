@@ -65,6 +65,5 @@ public class TerrainGenerator : MonoBehaviour
             c.transform.position -= new Vector3(0, Random.Range(25, 50), 0);
             c.transform.eulerAngles = new Vector3(Random.Range(-30, 30), Random.Range(0, 360), Random.Range(-30, 30));
         }
-
     }
 }

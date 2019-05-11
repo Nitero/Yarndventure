@@ -39,6 +39,4 @@ public class MovingObject : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
     }
-
-
 }

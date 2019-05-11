@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -82,7 +82,7 @@ public class Timer : MonoBehaviour
     // Intention: checking how many scenes contain "level"
     // Reason: making sure, if future scenes get added without being a level, no error occurs
     // Problem: SceneManager.GetSceneByBuildIndex(int buildIndex).name only works for current (or probably loaded) scene
-    private void CountScenes() 
+    private void CountScenes()
     {
         // string name = SceneManager.GetActiveScene().name;
         // print (name);

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,29 +7,29 @@ using UnityEngine.SceneManagement;
 public class ScoreMenu : MonoBehaviour
 {
     private float bestTime;
-    
+
     [SerializeField]
     public Image crosshair;
     public Timer timer;
     public Text FinishedTime;
     public Text BestTime;
-    
+
     public void ShowScreen()
     {
         bestTime = timer.getBestTime();
 
         float finishedTime = timer.GetCurrentTime();
-        if(IsNewBestTime(finishedTime)) 
-        {            
+        if(IsNewBestTime(finishedTime))
+        {
             bestTime = finishedTime;
             BestTime.text = "New Record! " + timer.TimeToString(bestTime);
             FinishedTime.gameObject.SetActive(false);
             timer.SaveTime(bestTime, SceneManager.GetActiveScene().buildIndex);
-        } 
-        else 
+        }
+        else
         {
             FinishedTime.text = "Your Time: " + timer.TimeToString(finishedTime);
-            BestTime.text = "Current Record: " + timer.TimeToString(bestTime);                 
+            BestTime.text = "Current Record: " + timer.TimeToString(bestTime);
         }
     }
 
