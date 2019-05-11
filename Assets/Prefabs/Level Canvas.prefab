@@ -770,8 +770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ca4fe86ec9a3247b24076c21f8091e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 0}
   crosshair: {fileID: 0}
+  timer: {fileID: 0}
   FinishedTime: {fileID: 5801482382686622892}
   BestTime: {fileID: 0}
 --- !u!1 &5801482382690735832
@@ -827,8 +827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ca4fe86ec9a3247b24076c21f8091e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 5801482383288881048}
   crosshair: {fileID: 8462661651812954098}
+  timer: {fileID: 5801482383288881048}
   FinishedTime: {fileID: 5801482382686622892}
   BestTime: {fileID: 3923811406339593476}
 --- !u!1 &5801482383288881054
@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8745099, g: 0.8745099, b: 0.8745099, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1305,8 +1305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ca4fe86ec9a3247b24076c21f8091e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 0}
   crosshair: {fileID: 0}
+  timer: {fileID: 0}
   FinishedTime: {fileID: 0}
   BestTime: {fileID: 3923811406339593476}
 --- !u!1 &8462661651812954096

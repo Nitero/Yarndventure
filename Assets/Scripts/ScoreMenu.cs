@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class ScoreMenu : MonoBehaviour
 {
     [SerializeField]
-    public Timer timer;
     public Image crosshair;
+    public Timer timer;
     public Text FinishedTime;
     public Text BestTime;
     private float bestTime = float.MaxValue;
@@ -50,4 +50,5 @@ public class ScoreMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
 }

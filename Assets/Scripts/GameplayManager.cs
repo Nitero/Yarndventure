@@ -7,18 +7,18 @@ public class GameplayManager : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
     [SerializeField] private CameraController camera;
-    [SerializeField] private Timer timer;
-    private ScoreMenu scoreMenu;
     [SerializeField] private float fallDeath = -10;
     [SerializeField] private float holdRespawnDelay = 0.25f;
-    
 
+    private Timer timer;
+    private ScoreMenu scoreMenu;
     private ScreenShakeTest screnshake;
     private Vector3 spawnPos;
     
 
     void Start()
     {
+        timer = GameObject.FindObjectOfType<Timer>();
         spawnPos = player.transform.position;
         screnshake = Camera.main.GetComponent<ScreenShakeTest>();
         scoreMenu = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreMenu>();
