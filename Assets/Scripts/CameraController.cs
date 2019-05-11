@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        lockMouse();
+        LockMouse();
     }
 
     void Update()
@@ -30,14 +30,19 @@ public class CameraController : MonoBehaviour
         //TODO: Stop rotating into floor, walls, etc
     }
 
-
-    private void lockMouse() //TODO: Move this to somewhere else
+    public void LockMouse() //TODO: Move this to somewhere else
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void resetCamera()
+    public void UnlockMouse()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ResetCamera()
     {
         transform.rotation = Quaternion.identity;
     }

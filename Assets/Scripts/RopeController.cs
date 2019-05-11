@@ -17,22 +17,26 @@ public class RopeController : MonoBehaviour
         anchorRB = anchorGO.GetComponent<Rigidbody>();
     }
 
-
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && joint == null)
         {
-
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity/*shootRange*/) && hit.collider)
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity /*shootRange*/ ) && hit.collider)
             {
                 anchorGO.transform.position = hit.point;
+                anchorGO.GetComponentInChildren<RopeMeshController>().setPlayerStartPos();
+
                 if (hit.transform.GetComponent<MovingObject>())
+                {
                     anchorGO.transform.parent = hit.transform; //TODO: dont let the rope get longer when object pulls away from player
+                }
                 else
+                {
                     anchorGO.transform.parent = null;
+                }
 
                 anchorGO.SetActive(true);
                 gameObject.AddComponent<ConfigurableJoint>();
@@ -63,12 +67,11 @@ public class RopeController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            destroy();
+            Destroy();
         }
     }
 
-
-    public void destroy()
+    public void Destroy()
     {
         Destroy(joint);
         anchorGO.SetActive(false);

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1622163404634676699}
   - component: {fileID: 1622163404634676676}
   - component: {fileID: 1622163404634676696}
+  - component: {fileID: 6716314623628607441}
   - component: {fileID: 1622163404634676697}
   - component: {fileID: 1622163404634676702}
   - component: {fileID: 1622163404634676703}
@@ -103,6 +104,21 @@ LookAtConstraint:
   m_IsContraintActive: 0
   m_IsLocked: 0
   m_Sources: []
+--- !u!114 &6716314623628607441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622163404634676677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18471381ac81a52498ae3cd242849225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxoffset: 2
+  traumaFallOff: 0.03333
+  powerOfAllShakes: 2
 --- !u!114 &1622163404634676697
 MonoBehaviour:
   m_ObjectHideFlags: 0
