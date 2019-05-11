@@ -12,24 +12,26 @@ public class ScoreMenu : MonoBehaviour
     public Text FinishedTime;
     public Text BestTime;
     private float bestTime = float.MaxValue;
-    
+
     public void ShowScreen()
     {
-        float finishedTime = timer.getCurrentTime();
-        if(IsNewBestTime(finishedTime)) 
-        {            
-            bestTime = finishedTime;            
-            BestTime.text = "New Record! " + timer.TimeToString(bestTime);            
+        float finishedTime = timer.GetCurrentTime();
+        if (IsNewBestTime(finishedTime))
+        {
+            bestTime = finishedTime;
+            BestTime.text = "New Record! " + timer.TimeToString(bestTime);
             FinishedTime.gameObject.SetActive(false);
-        } else {
+        }
+        else
+        {
             FinishedTime.text = "Your Time: " + timer.TimeToString(finishedTime);
-            BestTime.text = "Current Record: " + timer.TimeToString(bestTime);     
+            BestTime.text = "Current Record: " + timer.TimeToString(bestTime);
         }
     }
 
-        private bool IsNewBestTime(float newTime)
+    private bool IsNewBestTime(float newTime)
     {
-        if(newTime < bestTime)
+        if (newTime < bestTime)
         {
             return true;
         }
@@ -50,5 +52,4 @@ public class ScoreMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-
 }

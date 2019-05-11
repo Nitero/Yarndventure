@@ -13,7 +13,4 @@ public class SaveTimes : MonoBehaviour
     //         binaryFormatter.Serialize(fileStream, data);
     //     }
     // }
-
-
-
 }

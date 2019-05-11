@@ -32,7 +32,7 @@ public class Timer : MonoBehaviour
         return minutes.ToString() + ":" + (seconds.ToString("00")) + ":" + (miliseconds * 1000).ToString("000");
     }
 
-    public float getCurrentTime()
+    public float GetCurrentTime()
     {
         return timeCounter;
     }

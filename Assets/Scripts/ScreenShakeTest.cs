@@ -30,10 +30,10 @@ public class ScreenShakeTest : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         //Little shake on spawn
-        addShake(Vector2.up, 0.3f);
+        AddShake(Vector2.up, 0.3f);
     }
 
-    public void addShake(Vector2 dir, float strength) //dir only 1,0  0,-1  1,1  etc
+    public void AddShake(Vector2 dir, float strength) //dir only 1,0  0,-1  1,1  etc
     {
         //makes sure always 1 or 0 (?)
         if (dir.x < 0) dir.x = -dir.x;
@@ -66,18 +66,14 @@ public class ScreenShakeTest : MonoBehaviour
         transform.position += offset;
     }
 
-
-    public void levelCompleted()  //do screen shake based on camera right and up
+    public void LevelCompleted()  //do screen shake based on camera right and up
     {
-
-
         var dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
         dir.Normalize();
 
         //TODO: rotate dir to allign with camera view
 
-        addShake(dir, 2);
+        AddShake(dir, 2);
     }
- 
 }

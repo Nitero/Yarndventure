@@ -30,7 +30,6 @@ public class CameraController : MonoBehaviour
         //TODO: Stop rotating into floor, walls, etc
     }
 
-
     public void LockMouse() //TODO: Move this to somewhere else
     {
         Cursor.visible = false;

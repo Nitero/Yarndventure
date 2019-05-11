@@ -14,7 +14,6 @@ public class GameplayManager : MonoBehaviour
     private ScoreMenu scoreMenu;
     private ScreenShakeTest screnshake;
     private Vector3 spawnPos;
-    
 
     void Start()
     {
@@ -39,7 +38,7 @@ public class GameplayManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player.transform.position.y < fallDeath && player.getMovementState())
+        if (player.transform.position.y < fallDeath && player.GetMovementState())
         {
             RespawnPlayer();
         }
@@ -47,7 +46,7 @@ public class GameplayManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        screnshake.addShake(Vector2.up, 0.5f);
+        screnshake.AddShake(Vector2.up, 0.5f);
         foreach (MovingObject mo in GameObject.FindObjectsOfType<MovingObject>())
         {
             mo.Reset();

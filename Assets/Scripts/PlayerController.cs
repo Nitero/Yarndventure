@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     private RopeController rope;
     [SerializeField]
     private float airVelocityMax = 10f;
@@ -25,60 +26,72 @@ public class PlayerController : MonoBehaviour {
 
     const float EPSILON = 0.005f;
 
-    void Start () {
-        rb = GetComponent<Rigidbody> ();
-        rope = GetComponent<RopeController> ();
-        cam = Camera.main.GetComponent<CameraController> ();
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rope = GetComponent<RopeController>();
+        cam = Camera.main.GetComponent<CameraController>();
         pos = transform.position;
         activateMovement = true;
     }
 
-    private void Update () {
-        if (activateMovement) {
+    private void Update()
+    {
+        if (activateMovement)
+        {
             currentSpeed = (transform.position - pos).magnitude;
             pos = transform.position;
 
-            if (Input.GetKey (KeyCode.Space)){// && Input.GetKey (KeyCode.W)) {
+            if (Input.GetKey(KeyCode.Space))
+            {// && Input.GetKey (KeyCode.W)) {
                 moveSpeed = fastSpeed;
                 // }  else if (Input.anyKey == false && currentSpeed >= EPSILON) {     
                 // maybe a formular for slowing down slowly, when no key is pressed?
-            } else if (Input.anyKey == false && currentSpeed < EPSILON) {
+            }
+            else if (Input.anyKey == false && currentSpeed < EPSILON)
+            {
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
             }
-            else{
+            else
+            {
                 moveSpeed = slowSpeed;
             }
 
-            if (Input.GetMouseButton (0)) {
+            if (Input.GetMouseButton(0))
+            {
                 rb.drag = dragWithRope;
-            } else {
+            }
+            else
+            {
                 rb.drag = drag; //maybe after using rope, slowly go down to normal drag
             }
         }
     }
 
-    void FixedUpdate () {
-        float vertInput = Input.GetAxis ("Vertical");
-        float horInput = Input.GetAxis ("Horizontal");
+    void FixedUpdate()
+    {
+        float vertInput = Input.GetAxis("Vertical");
+        float horInput = Input.GetAxis("Horizontal");
 
         //Get current orientation of camera to know where pressign W should make ball go
         //Only x & z values only are wanted, so ignore camera looking into ground
 
         Vector3 flattendForwardLookDir = Camera.main.transform.forward;
         flattendForwardLookDir.y = 0;
-        flattendForwardLookDir.Normalize ();
+        flattendForwardLookDir.Normalize();
 
-        Vector3 rightMoveDir = Vector3.Cross (Vector3.up, flattendForwardLookDir);
+        Vector3 rightMoveDir = Vector3.Cross(Vector3.up, flattendForwardLookDir);
 
         Vector3 moveDir = (flattendForwardLookDir * vertInput) + (rightMoveDir * horInput);
-        moveDir.Normalize ();
+        moveDir.Normalize();
 
-        rb.AddForce (moveDir * moveSpeed, ForceMode.Force); //https://answers.unity.com/questions/789917/difference-and-uses-of-rigidbody-force-modes.html
+        rb.AddForce(moveDir * moveSpeed, ForceMode.Force); //https://answers.unity.com/questions/789917/difference-and-uses-of-rigidbody-force-modes.html
 
         //Additional boost on using space (once when pressed)
-        if (Input.GetKeyDown(KeyCode.Space)){
-            rb.AddForce(moveDir * (fastSpeed/4), ForceMode.Impulse);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(moveDir * (fastSpeed / 4), ForceMode.Impulse);
         }
 
 
@@ -91,35 +104,39 @@ public class PlayerController : MonoBehaviour {
         //TODO: better controlls... dont use addforce? more gravity? or change mass? 
     }
 
-    public void StopMovement () {
+    public void StopMovement()
+    {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.rotation = Quaternion.identity;
 
     }
 
-    public void DestroyRope () {
-        rope.Destroy ();
+    public void DestroyRope()
+    {
+        rope.Destroy();
     }
 
-    public void ClearLine () {
-        GetComponentInChildren<TrailRenderer> ().Clear ();
+    public void ClearLine()
+    {
+        GetComponentInChildren<TrailRenderer>().Clear();
     }
 
-    public bool getMovementState()
+    public bool GetMovementState()
     {
         return activateMovement;
     }
 
-    private void OnTriggerEnter (Collider other) {
-        if (other.tag == "Goal") {
-            GameObject.FindGameObjectWithTag ("GameplayManager").GetComponent<GameplayManager> ().LevelCleared ();
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Goal")
+        {
+            GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>().LevelCleared();
             activateMovement = false;
             //StopMovement ();
             Camera.main.GetComponent<CameraController>().enabled = false;
-            Camera.main.GetComponent<ScreenShakeTest>().levelCompleted();
+            Camera.main.GetComponent<ScreenShakeTest>().LevelCompleted();
             moveSpeed = 0;
         }
-
     }
 }

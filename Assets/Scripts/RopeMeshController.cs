@@ -38,9 +38,13 @@ public class RopeMeshController : MonoBehaviour
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, step);
 
         if (Vector3.Distance(transform.localPosition, Vector3.zero) <= 0.01)
+        {
             ropeEnd.SetActive(true);
+        }
         else
+        {
             ropeEnd.SetActive(false);
+        }
 
 
         //Look at rotation to player
