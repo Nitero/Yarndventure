@@ -8,9 +8,7 @@ public class Timer : MonoBehaviour
 {
     public Text timerText;
     private float startTime;
-    private int minuteCount;
-    private float secondsCount; // it includes the miliseconds as well
-    private float miliseconds;
+    private float timeCounter;
 
     // Start is called before the first  frame update
     void Start()
@@ -21,29 +19,29 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float t = Time.time - startTime;
-
-        secondsCount = Time.time - startTime;
-        miliseconds = secondsCount - (int)secondsCount;
-
-        if (secondsCount >= 60)
-        {
-            minuteCount++;
-            startTime = Time.time;
-        }
-
-        timerText.text = GetTime();
+        timeCounter = Time.time - startTime;
+        timerText.text = TimeToString(timeCounter);
     }
 
-    public string GetTime()
+    public string TimeToString(float seconds)
     {
-        return minuteCount.ToString() + ":" + ((int)secondsCount).ToString("00") + ":" + (miliseconds * 1000).ToString("000");
+        int minutes = 0;
+        float miliseconds = 0;
+        
+        miliseconds = seconds - (int)seconds;
+        minutes = (int) (seconds/60);
+
+        return minutes.ToString() + ":" + ((int)seconds).ToString("00") + ":" + (miliseconds * 1000).ToString("000");
+    }
+
+    public float getCurrentTime()
+    {
+        return timeCounter;
     }
 
     public void ResetTime()
     {
         startTime = Time.time;
-        minuteCount = 0;
     }
 
     public void StopTimer()

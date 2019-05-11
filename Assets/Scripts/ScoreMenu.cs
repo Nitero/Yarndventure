@@ -10,11 +10,13 @@ public class ScoreMenu : MonoBehaviour
     public Timer timer;
     public Image crosshair;
     public Text FinishedTime;
+    public Text BestTime;
+    
 
     public void ShowScreen()
     {
-        FinishedTime.text = "Your Time: " + timer.GetTime();
-        FinishedTime.gameObject.SetActive(true);        
+        FinishedTime.text = "Your Time: " + timer.TimeToString(timer.getCurrentTime());
+        FinishedTime.gameObject.SetActive(true);
     }
 
     public void PlayNextLevel()
