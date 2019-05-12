@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Contains the all time high score and the best time of the current level
 public class Score
 {
     private float bestTime;  // of current level
