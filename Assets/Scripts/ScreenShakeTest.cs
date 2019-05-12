@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScreenShakeTest : MonoBehaviour
 {
-
     //INSTEAD ONE PIXEL UNIT IN PICO8 ITS NOW ONE WORLD UNIT SO A TILE
-
     private Vector3 origPos;
     private Vector3 offset;
 
@@ -24,7 +20,7 @@ public class ScreenShakeTest : MonoBehaviour
     // https://www.reddit.com/r/gamedesign/comments/6o090l/tried_to_focus_on_game_feel_in_this_game_i_didnt/
     // DIFFERENCE BETWEEN GAME FEEL AND JUICE https://www.youtube.com/watch?v=S-EmAitPYg8&ab_channel=GustavDahl
 
-    void Start()
+    private void Start()
     {
         origPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -43,8 +39,8 @@ public class ScreenShakeTest : MonoBehaviour
         trauma = new Vector2(trauma.x + (dir.x * strength), trauma.y + (dir.y * strength));
     }
 
-
-    void Update() //update shake
+    // Update shake
+    private void Update()
     {
         trauma.x -= traumaFallOff; // is this the falloff? one every sec?  maybe use Time.deltaTime and * 
         if (trauma.x <= 0) trauma.x = 0;
@@ -60,8 +56,8 @@ public class ScreenShakeTest : MonoBehaviour
         offset = new Vector2(shake.x * (maxoffset * Random.Range(-1f, 1f)), shake.y * (maxoffset * Random.Range(-1f, 1f)));
     }
 
-
-    void LateUpdate() //Show shake
+    // Show shake
+    private void LateUpdate()
     {
         transform.position += offset;
     }
@@ -69,9 +65,7 @@ public class ScreenShakeTest : MonoBehaviour
     public void LevelCompleted()  //do screen shake based on camera plane (no z, like hitting a wall)
     {
         var dir = transform.right + transform.up;
-
         dir *= Random.Range(-1f, 1f);
-
         dir.Normalize();
 
         AddShake(dir, 1);

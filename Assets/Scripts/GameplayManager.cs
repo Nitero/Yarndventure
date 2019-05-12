@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,18 +9,21 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float fallDeath = -10;
     [SerializeField] private float holdRespawnDelay = 0.25f;
 
+    private LevelUI levelUI;
+    private Score score;
     private Timer timer;
-    private ScoreMenu scoreMenu;
     private ScreenShakeTest screnshake;
     private Vector3 spawnPos;
 
-    void Start()
+    private void Start()
     {
         timer = GameObject.FindObjectOfType<Timer>();
         spawnPos = player.transform.position;
         screnshake = Camera.main.GetComponent<ScreenShakeTest>();
-        scoreMenu = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreMenu>();
-        scoreMenu.gameObject.SetActive(false);
+
+        score = new Score();
+        levelUI = GameObject.FindGameObjectWithTag("LevelUI").GetComponent<LevelUI>();
+        levelUI.SelectGamePlayUI();
     }
 
     private void Update()
@@ -36,7 +38,7 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (player.transform.position.y < fallDeath && player.GetMovementState())
         {
@@ -65,11 +67,13 @@ public class GameplayManager : MonoBehaviour
 
     public void LevelCleared()
     {
-        scoreMenu.gameObject.SetActive(true);
-        scoreMenu.ShowScreen();
-        scoreMenu.crosshair.enabled = false;
+        levelUI.SelectScoreMenuUI();
+        if (score.UpdateScore(timer.GetCurrentTime())) {
+            levelUI.SetScoreUIWithNewRecord(score.GetBestTime());
+        } else {
+            levelUI.SetScoreUI(timer.GetCurrentTime(), score.GetBestTime());
+        }
         camera.UnlockMouse();
-        timer.StopTimer();
     }
 
     private IEnumerator RestartTimer()

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RopeMeshController : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class RopeMeshController : MonoBehaviour
 
     private float currentTotalLength;
 
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
@@ -24,12 +22,7 @@ public class RopeMeshController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
-
-    void LateUpdate()
+    private void LateUpdate()
     {
         //Animate flying from player to anchor position
         //from: transform.localPosition = -transform.parent.position + player.position;
@@ -67,8 +60,7 @@ public class RopeMeshController : MonoBehaviour
         }
     }
 
-
-    public void setPlayerStartPos()
+    public void SetPlayerStartPos()
     {
         if (player == null) return;
 

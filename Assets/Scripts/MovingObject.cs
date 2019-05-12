@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovingObject : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public class MovingObject : MonoBehaviour
     public float distance; //before turn around
     private Vector3 startPos;
 
-    void Start()
+    private void Start()
     {
         if (GetComponent<Rigidbody>())
         {
@@ -20,7 +18,7 @@ public class MovingObject : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z) + direction * Time.deltaTime;
         if (Vector3.Distance(startPos, transform.position) >= distance)

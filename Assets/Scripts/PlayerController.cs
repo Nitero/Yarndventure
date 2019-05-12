@@ -1,21 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private RopeController rope;
-    [SerializeField]
-    private float airVelocityMax = 10f;
-    [SerializeField]
-    private float slowSpeed = 10f;
-    [SerializeField]
-    private float fastSpeed = 20f;
+    [SerializeField] private float airVelocityMax = 10f;
+    [SerializeField] private float slowSpeed = 10f;
+    [SerializeField] private float fastSpeed = 20f;
 
-    [SerializeField]
-    private float drag = 3f;
-    [SerializeField]
-    private float dragWithRope = 0f;
+    [SerializeField] private float drag = 3f;
+    [SerializeField] private float dragWithRope = 0f;
 
     private Vector3 pos;
     private float moveSpeed;
@@ -26,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     const float EPSILON = 0.005f;
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rope = GetComponent<RopeController>();
@@ -69,7 +62,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         float vertInput = Input.GetAxis("Vertical");
         float horInput = Input.GetAxis("Horizontal");
@@ -127,7 +120,7 @@ public class PlayerController : MonoBehaviour
         return activateMovement;
     }
 
-    public float getVelocity()
+    public float GetVelocity()
     {
         return rb.velocity.magnitude;
     }
