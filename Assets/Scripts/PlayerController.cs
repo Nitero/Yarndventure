@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
             GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<GameplayManager>().LevelCleared();
             activateMovement = false;
             //StopMovement ();
-            Camera.main.GetComponent<CameraController>().enabled = false;
+            Camera.main.GetComponent<CameraController>().LevelCompleted();
             Camera.main.GetComponent<ScreenShakeTest>().LevelCompleted();
             moveSpeed = 0;
         }

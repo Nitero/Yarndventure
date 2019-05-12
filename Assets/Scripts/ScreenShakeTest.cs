@@ -66,14 +66,14 @@ public class ScreenShakeTest : MonoBehaviour
         transform.position += offset;
     }
 
-    public void LevelCompleted()  //do screen shake based on camera right and up
+    public void LevelCompleted()  //do screen shake based on camera plane (no z, like hitting a wall)
     {
-        var dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        var dir = transform.right + transform.up;
+
+        dir *= Random.Range(-1f, 1f);
 
         dir.Normalize();
 
-        //TODO: rotate dir to allign with camera view
-
-        AddShake(dir, 2);
+        AddShake(dir, 1);
     }
 }

@@ -64,4 +64,11 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.identity;
     }
 
+    public void LevelCompleted()
+    {
+        GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<ParticleManager>().spawnGoalFX(transform.position);
+        distortion.intensity.value = 0;
+        this.enabled = false;
+    }
+
 }

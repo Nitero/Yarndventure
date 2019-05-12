@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6753505650894494949}
   - component: {fileID: 6753505650894494948}
   - component: {fileID: 419824426335231449}
+  - component: {fileID: 8389516713175170234}
   m_Layer: 0
   m_Name: Gameplay Managers
   m_TagString: GameplayManager
@@ -70,3 +71,22 @@ MonoBehaviour:
   fogPosition: -15
   seed: 5
   seedByLevel: 1
+--- !u!114 &8389516713175170234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753505650894494951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ba7702f95cc9e4bb2ce60aeb04be7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFastThreshold: 5
+  konfetti: {fileID: 1556797289474691316, guid: 88215793166126745920129c412f8541,
+    type: 3}
+  playerBoostScreen: {fileID: 3064526436241495267, guid: 18f1b559c5a0ea347a2bc68615ed9e2f,
+    type: 3}
+  playerRespawnPart: {fileID: 5257289911090909530, guid: ae5a4fe0703e85b4aace73ed7db74ef1,
+    type: 3}
