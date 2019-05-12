@@ -6,12 +6,17 @@ using UnityEngine.UI;
 public class SceneSelectionMenu : MonoBehaviour
 {
     private float[] bestTimes;
+    private bool switchToFirstPage = true;
     [SerializeField] private GameObject timeRecords;
+    [SerializeField] private GameObject menuPage01;
+    [SerializeField] private GameObject menuPage02;
 
     private void Start()
     {
         bestTimes = SaveLoadManager.LoadTimes();
         ShowTimeRecords();
+        SwitchPage();
+        menuPage02.SetActive(false);
     }
 
     private void ShowTimeRecords()
@@ -31,6 +36,21 @@ public class SceneSelectionMenu : MonoBehaviour
                 records[i].text = "No Time Record";
             }
         }
+    }
+
+    public void SwitchPage()
+    {
+        if(switchToFirstPage)
+        {
+            menuPage02.SetActive(false);
+            menuPage01.SetActive(true);
+        }
+        else
+        {
+            menuPage01.SetActive(false);
+            menuPage02.SetActive(true);
+        }
+        switchToFirstPage = !switchToFirstPage;
     }
 
     //Show Level 1 from Scenes In Build
@@ -97,6 +117,36 @@ public class SceneSelectionMenu : MonoBehaviour
     public void Level11()
     {
         LoadLevel(11);
+    }
+
+        //Show Level 11 from Scenes In Build
+    public void Level12()
+    {
+        LoadLevel(12);
+    }
+
+        //Show Level 11 from Scenes In Build
+    public void Level13()
+    {
+        LoadLevel(13);
+    }
+
+        //Show Level 11 from Scenes In Build
+    public void Level14()
+    {
+        LoadLevel(14);
+    }
+
+        //Show Level 11 from Scenes In Build
+    public void Level15()
+    {
+        LoadLevel(15);
+    }
+
+        //Show Level 11 from Scenes In Build
+    public void Level16()
+    {
+        LoadLevel(16);
     }
 
     // Determines which level scene is loaded
