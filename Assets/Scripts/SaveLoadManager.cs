@@ -40,7 +40,7 @@ public static class SaveLoadManager
 
         for(int i = 0; i < newArray.Length; i++)
         {
-                newArray[i] = float.MaxValue;            
+                newArray[i] = float.MinValue;            
         }
         return newArray;
     }

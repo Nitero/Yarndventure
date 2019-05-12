@@ -29,7 +29,7 @@ public class Score
 
     private bool IsNewBestTime(float newTime)
     {
-        if (newTime < bestTime)
+        if (bestTime < 0.0f || newTime < bestTime)
         {
             return true;
         }

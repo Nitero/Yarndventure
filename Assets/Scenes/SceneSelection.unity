@@ -828,16 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6588f7f161a5d40ae3b16e4b5bebe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLevel01: {fileID: 1833618305}
-  timeLevel02: {fileID: 1830662526}
-  timeLevel03: {fileID: 1462260004}
-  timeLevel04: {fileID: 1510095281}
-  timeLevel05: {fileID: 210886156}
-  timeLevel06: {fileID: 1630231945}
-  timeLevel07: {fileID: 984677235}
-  timeLevel08: {fileID: 190035884}
-  timeLevel09: {fileID: 1422266478}
-  timeLevel10: {fileID: 1804322938}
+  timeRecords: {fileID: 737210384}
 --- !u!1 &172914095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,7 +1865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 737210385}
   m_Layer: 0
-  m_Name: ShowingRecords
+  m_Name: Time Records
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
