@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
 public class CameraController : MonoBehaviour
@@ -15,7 +13,7 @@ public class CameraController : MonoBehaviour
     private LensDistortion distortion;
     private PlayerController player;
 
-    void Start()
+    private void Start()
     {
         LockMouse();
 
@@ -25,7 +23,7 @@ public class CameraController : MonoBehaviour
         distortion = volume.profile.GetSetting<LensDistortion>();
     }
 
-    void Update()
+    private void Update()
     {
         // Rotate around ball horizontally (Deternibes what is forward)
         transform.RotateAround(ballToFollow.position, Vector3.up, Input.GetAxis("Mouse X"));
@@ -40,7 +38,7 @@ public class CameraController : MonoBehaviour
 
 
         //Get the speed of player and set lens distort accordingly
-        var vel = player.getVelocity() * distortMulti;
+        var vel = player.GetVelocity() * distortMulti;
         if (vel >= maxLensDistort) vel = maxLensDistort;
         distortion.intensity.value = -vel; //TODO: interpolate
     }

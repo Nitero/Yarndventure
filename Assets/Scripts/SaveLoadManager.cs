@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class SaveLoadManager
 {
@@ -29,7 +28,7 @@ public static class SaveLoadManager
             TimeKeeper data = binaryFormatter.Deserialize(fileStream) as TimeKeeper;
             
             fileStream.Close();
-            return data.getTimes();
+            return data.GetTimes();
         } else {
             return ResetTimes();
         }
@@ -37,7 +36,7 @@ public static class SaveLoadManager
 
     public static float[] ResetTimes()
     {
-        float[] newArray = new float[Application.levelCount - 1];
+        float[] newArray = new float[SceneManager.sceneCountInBuildSettings - 1];
 
         for(int i = 0; i < newArray.Length; i++)
         {
@@ -57,9 +56,8 @@ public class TimeKeeper
         bestTimes = newBestTimes;
     }
 
-    public float[] getTimes()
+    public float[] GetTimes()
     {
         return bestTimes;
     }
-
 }

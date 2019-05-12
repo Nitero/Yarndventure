@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TerrainGenerator : MonoBehaviour
@@ -18,7 +16,7 @@ public class TerrainGenerator : MonoBehaviour
     public int seed;
     public bool seedByLevel = false;
 
-    void Start()
+    private void Start()
     {
         //center = new Vector3((safeZone[0].x + safeZone[1].x + safeZone[2].x + safeZone[3].x) / 4, 0, (safeZone[0].z + safeZone[1].z + safeZone[2].z + safeZone[3].z) / 4);
         //w = safeZone[0].x + safeZone[1].x;
@@ -32,7 +30,7 @@ public class TerrainGenerator : MonoBehaviour
         {
             Random.seed = seed;//(int)System.DateTime.Now.Ticks;
         }
-        if(seedByLevel)
+        if (seedByLevel)
         {
             Random.seed = SceneManager.GetActiveScene().buildIndex + seed;
         }

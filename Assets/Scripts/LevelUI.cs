@@ -31,13 +31,15 @@ public class LevelUI : MonoBehaviour
     }
 
     // Shows clear time of current level and the current best time
-    public void SetScoreUI(float finishedTime, float bestTime) {
+    public void SetScoreUI(float finishedTime, float bestTime)
+    {
         FinishedTime.text = "Your Time: " + Timer.TimeToString(finishedTime);
         BestTime.text = "Current Record: " + Timer.TimeToString(bestTime);
     }
 
     // Shows the new record
-    public void SetScoreUIWithNewRecord(float bestTime) {
+    public void SetScoreUIWithNewRecord(float bestTime)
+    {
         BestTime.text = "New Record! " + Timer.TimeToString(bestTime);
         FinishedTime.gameObject.SetActive(false);
     }
@@ -59,6 +61,6 @@ public class LevelUI : MonoBehaviour
     public void GoToMenu()
     {
         // At the moment the order is levels -> menu -> scene selection
-        SceneManager.LoadScene(Application.levelCount - 2);
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 2);
     }
 }

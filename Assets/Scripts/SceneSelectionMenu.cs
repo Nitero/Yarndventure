@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class SceneSelectionMenu : MonoBehaviour
 {
     //Show Level 1 from Scenes In Build
@@ -64,7 +63,7 @@ public class SceneSelectionMenu : MonoBehaviour
         LoadLevel(10);
     }
 
-    //Show Level 10 from Scenes In Build
+    //Show Level 11 from Scenes In Build
     public void Level11()
     {
         LoadLevel(11);

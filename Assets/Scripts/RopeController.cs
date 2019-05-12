@@ -1,23 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RopeController : MonoBehaviour
 {
-    [SerializeField]
-    private float shootRange = 100;
-    [SerializeField]
-    private GameObject anchorGO;
+    [SerializeField] private float shootRange = 100;
+    [SerializeField] private GameObject anchorGO;
     private Rigidbody anchorRB;
     private ConfigurableJoint joint;
 
-    void Start()
+    private void Start()
     {
         joint = GetComponent<ConfigurableJoint>();
         anchorRB = anchorGO.GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0) && joint == null)
         {
@@ -27,7 +23,7 @@ public class RopeController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity /*shootRange*/ ) && hit.collider)
             {
                 anchorGO.transform.position = hit.point;
-                anchorGO.GetComponentInChildren<RopeMeshController>().setPlayerStartPos();
+                anchorGO.GetComponentInChildren<RopeMeshController>().SetPlayerStartPos();
 
                 if (hit.transform.GetComponent<MovingObject>())
                 {

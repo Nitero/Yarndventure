@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LineAttacher : MonoBehaviour
 {
@@ -8,12 +6,12 @@ public class LineAttacher : MonoBehaviour
     //TODO: add optional offset
     private LineRenderer line;
 
-    void Start()
+    private void Start()
     {
         line = GetComponent<LineRenderer>();
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         line.SetPosition(0, transform.position);
         line.SetPosition(1, attachedObj.position);
