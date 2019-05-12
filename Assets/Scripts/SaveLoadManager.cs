@@ -4,10 +4,12 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Loads, saves and updates high score
 public static class SaveLoadManager
 {
     private static string nameOfSaveFile = "/time_records.sav";
 
+    // Update high score in file
     public static void SaveTimes(float[] newBestTimes)
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -18,6 +20,7 @@ public static class SaveLoadManager
         fileStream.Close();
     }
 
+    // Retrieve high score from file
     public static float[] LoadTimes()
     {
         if (File.Exists(Application.persistentDataPath + nameOfSaveFile))
@@ -36,6 +39,8 @@ public static class SaveLoadManager
         }
     }
 
+    // Overwrite/reset high score to negative values
+    // Negative values equal to non-existent time record
     public static float[] ResetTimes()
     {
         float[] newArray = new float[SceneManager.sceneCountInBuildSettings];

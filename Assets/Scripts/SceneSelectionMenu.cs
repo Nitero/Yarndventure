@@ -14,6 +14,7 @@ public class SceneSelectionMenu : MonoBehaviour
         ShowTimeRecords();
     }
 
+    // Shows time records below their corresponding level
     private void ShowTimeRecords()
     {
         Text[] records = timeRecords.GetComponentsInChildren<Text>();
