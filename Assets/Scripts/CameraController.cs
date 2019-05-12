@@ -61,7 +61,7 @@ public class CameraController : MonoBehaviour
 
     public void LevelCompleted()
     {
-        GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<ParticleManager>().spawnGoalFX(transform.position);
+        GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<ParticleManager>().SpawnGoalFX(transform.position);
         distortion.intensity.value = 0;
         this.enabled = false;
     }

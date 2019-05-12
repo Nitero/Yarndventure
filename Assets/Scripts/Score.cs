@@ -29,6 +29,7 @@ public class Score
 
     private bool IsNewBestTime(float newTime)
     {
+        // best times of not yet cleared levels are negative floats
         if (bestTime < 0.0f || newTime < bestTime)
         {
             return true;

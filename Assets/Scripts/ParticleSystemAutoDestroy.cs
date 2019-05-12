@@ -6,13 +6,12 @@ public class ParticleSystemAutoDestroy : MonoBehaviour
 {
     private ParticleSystem ps;
 
-
-    public void Start()
+    private void Start()
     {
         ps = GetComponent<ParticleSystem>();
     }
 
-    public void Update()
+    private void Update()
     {
         if (ps)
         {

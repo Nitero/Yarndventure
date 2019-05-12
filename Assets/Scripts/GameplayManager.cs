@@ -61,8 +61,7 @@ public class GameplayManager : MonoBehaviour
         timer.ResetTime();
 
         screnshake.AddShake(Vector2.up, 0.5f);
-        GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<ParticleManager>().playerRespawn();
-
+        GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<ParticleManager>().PlayerRespawn();
     }
 
     public void LevelCleared()
