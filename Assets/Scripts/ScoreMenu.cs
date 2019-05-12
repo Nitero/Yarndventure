@@ -50,6 +50,7 @@ public class ScoreMenu : MonoBehaviour
 
     public void GoToMenu()
     {
-        SceneManager.LoadScene(Application.levelCount - 1);
+        // At the moment the order is levels -> menu -> scene selection
+        SceneManager.LoadScene(Application.levelCount - 2);
     }
 }
