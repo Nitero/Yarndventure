@@ -332,9 +332,10 @@ GameObject:
   - component: {fileID: 5801482381881110796}
   - component: {fileID: 5801482381881110797}
   - component: {fileID: 5801482381881110786}
+  - component: {fileID: 2470709569184868207}
   m_Layer: 5
-  m_Name: Level Canvas
-  m_TagString: Untagged
+  m_Name: Level UI
+  m_TagString: LevelUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -420,6 +421,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2470709569184868207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5801482381881110787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ee10ca0449c9548a063ffce5114196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameplay: {fileID: 8962400434915890922}
+  levelMenu: {fileID: 5801482382690735832}
+  FinishedTime: {fileID: 5801482382686622892}
+  BestTime: {fileID: 3923811406339593476}
 --- !u!1 &5801482381929422652
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +553,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5801482382690735834}
+      - m_Target: {fileID: 2470709569184868207}
         m_MethodName: PlayAgain
         m_Mode: 1
         m_Arguments:
@@ -560,7 +577,7 @@ GameObject:
   - component: {fileID: 5801482382536464391}
   - component: {fileID: 5801482382536464384}
   - component: {fileID: 5801482382536464385}
-  - component: {fileID: 5801482382536464390}
+  - component: {fileID: 886721762275631448}
   m_Layer: 5
   m_Name: NextLevel
   m_TagString: Untagged
@@ -625,7 +642,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &5801482382536464390
+--- !u!114 &886721762275631448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -665,7 +682,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5801482382690735834}
+      - m_Target: {fileID: 2470709569184868207}
         m_MethodName: PlayNextLevel
         m_Mode: 1
         m_Arguments:
@@ -689,7 +706,6 @@ GameObject:
   - component: {fileID: 5801482382686622882}
   - component: {fileID: 5801482382686622895}
   - component: {fileID: 5801482382686622892}
-  - component: {fileID: 5801482382686622894}
   m_Layer: 5
   m_Name: FinishedTime
   m_TagString: Untagged
@@ -758,20 +774,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Shows FinishedTime
---- !u!114 &5801482382686622894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5801482382686622883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ca4fe86ec9a3247b24076c21f8091e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FinishedTime: {fileID: 5801482382686622892}
-  BestTime: {fileID: 0}
 --- !u!1 &5801482382690735832
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,10 +783,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5801482382690735835}
-  - component: {fileID: 5801482382690735834}
   m_Layer: 5
-  m_Name: Death Menu
-  m_TagString: ScoreManager
+  m_Name: Level Menu
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -813,20 +814,6 @@ RectTransform:
   m_AnchoredPosition: {x: -4.25, y: -9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5801482382690735834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5801482382690735832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ca4fe86ec9a3247b24076c21f8091e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FinishedTime: {fileID: 5801482382686622892}
-  BestTime: {fileID: 3923811406339593476}
 --- !u!1 &5801482383288881054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,7 +1183,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5801482382690735834}
+      - m_Target: {fileID: 2470709569184868207}
         m_MethodName: GoToMenu
         m_Mode: 1
         m_Arguments:
@@ -1204,7 +1191,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: GoToMenu
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1220,7 +1207,6 @@ GameObject:
   - component: {fileID: 9010990825352897398}
   - component: {fileID: 4099949491814979555}
   - component: {fileID: 3923811406339593476}
-  - component: {fileID: 5160951546796222153}
   m_Layer: 5
   m_Name: BestTime
   m_TagString: Untagged
@@ -1289,20 +1275,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Shows BestTime
---- !u!114 &5160951546796222153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5865749384776104779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ca4fe86ec9a3247b24076c21f8091e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FinishedTime: {fileID: 0}
-  BestTime: {fileID: 3923811406339593476}
 --- !u!1 &8462661651812954096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,10 +1358,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4228555437010748772}
-  - component: {fileID: 5574993366676597138}
   m_Layer: 5
   m_Name: Gameplay UI
-  m_TagString: GameplayUI
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1415,17 +1386,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5574993366676597138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8962400434915890922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef8eee05c5b43bb4e9fc457e47957e4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshair: {fileID: 8462661651812954098}
-  timerText: {fileID: 5801482383288881051}
