@@ -36,7 +36,6 @@ public class CameraController : MonoBehaviour
 
         //TODO: Stop rotating into floor, walls, etc
 
-
         //Get the speed of player and set lens distort accordingly
         var vel = player.GetVelocity() * distortMulti;
         if (vel >= maxLensDistort) vel = maxLensDistort;
@@ -58,5 +57,12 @@ public class CameraController : MonoBehaviour
     public void ResetCamera()
     {
         transform.rotation = Quaternion.identity;
+    }
+
+    public void LevelCompleted()
+    {
+        GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<ParticleManager>().spawnGoalFX(transform.position);
+        distortion.intensity.value = 0;
+        this.enabled = false;
     }
 }

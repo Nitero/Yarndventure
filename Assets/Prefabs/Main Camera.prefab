@@ -60,7 +60,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 5000
   field of view: 70
   orthographic: 0
   orthographic size: 5
@@ -135,7 +135,8 @@ MonoBehaviour:
   lookSpeed: 1
   horizontalCameraOffset: 2
   verticalCameraOffset: 0.75
-  maxLensDistort: 40
+  maxLensDistort: 45
+  distortMulti: 2
 --- !u!114 &1622163404634676702
 MonoBehaviour:
   m_ObjectHideFlags: 0

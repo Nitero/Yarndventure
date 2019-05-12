@@ -48,7 +48,7 @@ public class GameplayManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        screnshake.AddShake(Vector2.up, 0.5f);
+
         foreach (MovingObject mo in GameObject.FindObjectsOfType<MovingObject>())
         {
             mo.Reset();
@@ -59,6 +59,10 @@ public class GameplayManager : MonoBehaviour
         player.ClearLine();
         camera.ResetCamera();
         timer.ResetTime();
+
+        screnshake.AddShake(Vector2.up, 0.5f);
+        GameObject.FindGameObjectWithTag("GameplayManager").GetComponent<ParticleManager>().playerRespawn();
+
     }
 
     public void LevelCleared()
