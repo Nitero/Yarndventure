@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5998910818941445896, guid: 78c394dd3090ed046a791aab97ea297e, type: 3}
   camera: {fileID: 1622163404634676697, guid: 02bda659a1524d74ca21f2c7c1b45311, type: 3}
-  timer: {fileID: 0}
   fallDeath: -15
   holdRespawnDelay: 0.25
 --- !u!114 &419824426335231449
@@ -69,6 +68,5 @@ MonoBehaviour:
   ammountOfCubes: 10
   maxDist: 200
   fogPosition: -15
-  seed: 0
-  rand: 1
-  seedByLevel: 0
+  seed: 5
+  seedByLevel: 1

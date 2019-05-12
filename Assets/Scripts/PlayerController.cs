@@ -127,6 +127,11 @@ public class PlayerController : MonoBehaviour
         return activateMovement;
     }
 
+    public float getVelocity()
+    {
+        return rb.velocity.magnitude;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Goal")

@@ -749,6 +749,11 @@ PrefabInstance:
       propertyPath: ballToFollow
       value: 
       objectReference: {fileID: 113954453}
+    - target: {fileID: 1622163404634676697, guid: 02bda659a1524d74ca21f2c7c1b45311,
+        type: 3}
+      propertyPath: maxLensDistort
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1622163404634676698, guid: 02bda659a1524d74ca21f2c7c1b45311,
         type: 3}
       propertyPath: m_LocalPosition.x

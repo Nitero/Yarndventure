@@ -135,6 +135,7 @@ MonoBehaviour:
   lookSpeed: 1
   horizontalCameraOffset: 2
   verticalCameraOffset: 0.75
+  maxLensDistort: 40
 --- !u!114 &1622163404634676702
 MonoBehaviour:
   m_ObjectHideFlags: 0
