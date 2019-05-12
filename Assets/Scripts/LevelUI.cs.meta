@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 74ee10ca0449c9548a063ffce5114196
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameplay: {instanceID: 0}
+  - levelMenu: {instanceID: 0}
+  - FinishedTime: {instanceID: 0}
+  - BestTime: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -5,9 +5,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform ballToFollow;
-
+    [SerializeField] private Transform ballToFollow;
     [SerializeField] private float lookSpeed = 3; //slider instead?
     [SerializeField] private float horizontalCameraOffset = 3;
     [SerializeField] private float verticalCameraOffset = 3;
@@ -63,5 +61,4 @@ public class CameraController : MonoBehaviour
     {
         transform.rotation = Quaternion.identity;
     }
-
 }

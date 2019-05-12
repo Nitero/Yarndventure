@@ -6,7 +6,7 @@ TagManager:
   tags:
   - GameplayManager
   - Goal
-  - ScoreManager
+  - LevelUI
   layers:
   - Default
   - TransparentFX

@@ -1,36 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] private Text timerText;
     private float startTime;
     private float timeCounter;
-    private float[] bestTimes;
-    private float bestTime; // of current level
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         startTime = Time.time;
-        bestTimes = SaveLoadManager.LoadTimes();
-        bestTime = bestTimes[SceneManager.GetActiveScene().buildIndex];
-        // printTimes();
-    }
-
-    private void printTimes()
-    {
-        for (int i = 0; i < bestTimes.Length; i++)
-        {
-            print(i + ". " + bestTimes[i]);
-        }
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         timeCounter = Time.time - startTime;
         timerText.text = TimeToString(timeCounter);
@@ -58,17 +42,6 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         timerText.gameObject.SetActive(false);
-    }
-
-    public void SaveTime(float newBestTime, int buildIndex)
-    {
-        bestTimes[buildIndex] = newBestTime;
-        SaveLoadManager.SaveTimes(bestTimes);
-    }
-
-    public float GetBestTime()
-    {
-        return bestTime;
     }
 
     public void Finish()

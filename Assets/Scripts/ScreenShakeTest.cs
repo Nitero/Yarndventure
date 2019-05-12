@@ -69,7 +69,6 @@ public class ScreenShakeTest : MonoBehaviour
     public void LevelCompleted()  //do screen shake based on camera right and up
     {
         var dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-
         dir.Normalize();
 
         //TODO: rotate dir to allign with camera view
