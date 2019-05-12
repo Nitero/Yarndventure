@@ -19,6 +19,7 @@ public class SceneSelectionMenu : MonoBehaviour
         menuPage02.SetActive(false);
     }
 
+
     private void ShowTimeRecords()
     {
         Text[] records = timeRecords.GetComponentsInChildren<Text>();
@@ -26,7 +27,7 @@ public class SceneSelectionMenu : MonoBehaviour
 
         for (int i = 0; i < records.Length; i++)
         {
-            float score = bestTimes[i];
+            float score = bestTimes[i+1];
             if (score > 0.0f)
             {
                 records[i].text = Timer.TimeToString(score);

@@ -48,22 +48,4 @@ public class Timer : MonoBehaviour
     {
         timerText.color = Color.yellow;
     }
-
-    // This method is unfinished!
-    // Intention: checking how many scenes contain "level"
-    // Reason: making sure, if future scenes get added without being a level, no error occurs
-    // Problem: SceneManager.GetSceneByBuildIndex(int buildIndex).name only works for current (or probably loaded) scene
-    private void CountScenes()
-    {
-        // string name = SceneManager.GetActiveScene().name;
-        // print (name);
-        // print(Application.levelCount);
-        // print(SceneManager.GetSceneByBuildIndex(1).name);
-        // int numberOfLevels;
-
-        // for (int i = 0; i < Application.levelCount; i++)
-        //     {
-        //         if(SceneManager.GetSceneByBuildIndex(2).name)
-        //     }
-    }
 }
