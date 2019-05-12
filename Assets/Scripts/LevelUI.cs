@@ -30,11 +30,13 @@ public class LevelUI : MonoBehaviour
         gameplay.SetActive(false);
     }
 
+    // Shows clear time of current level and the current best time
     public void SetScoreUI(float finishedTime, float bestTime) {
         FinishedTime.text = "Your Time: " + Timer.TimeToString(finishedTime);
         BestTime.text = "Current Record: " + Timer.TimeToString(bestTime);
     }
 
+    // Shows the new record
     public void SetScoreUIWithNewRecord(float bestTime) {
         BestTime.text = "New Record! " + Timer.TimeToString(bestTime);
         FinishedTime.gameObject.SetActive(false);
