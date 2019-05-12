@@ -2,8 +2,7 @@
 
 public class LineAttacher : MonoBehaviour
 {
-    public Transform attachedObj;
-    //TODO: add optional offset
+    [SerializeField] private Transform attachedObj;
     private LineRenderer line;
 
     private void Start()

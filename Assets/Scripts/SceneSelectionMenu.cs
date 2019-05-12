@@ -16,10 +16,9 @@ public class SceneSelectionMenu : MonoBehaviour
         bestTimes = SaveLoadManager.LoadTimes();
         ShowTimeRecords();
         SwitchPage();
-        menuPage02.SetActive(false);
     }
 
-
+    // Shows time records below their corresponding level
     private void ShowTimeRecords()
     {
         Text[] records = timeRecords.GetComponentsInChildren<Text>();
@@ -44,12 +43,12 @@ public class SceneSelectionMenu : MonoBehaviour
         if(switchToFirstPage)
         {
             menuPage02.SetActive(false);
-            menuPage01.SetActive(true);            
+            menuPage01.SetActive(true);
         }
         else
         {
             menuPage01.SetActive(false);
-            menuPage02.SetActive(true);            
+            menuPage02.SetActive(true);
         }
         ShowTimeRecords();
         switchToFirstPage = !switchToFirstPage;

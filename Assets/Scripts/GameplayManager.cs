@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Manages updates to the state and view of a level
 public class GameplayManager : MonoBehaviour
 {
     [SerializeField] private PlayerController player;

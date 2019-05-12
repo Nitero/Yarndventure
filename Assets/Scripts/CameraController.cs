@@ -34,15 +34,16 @@ public class CameraController : MonoBehaviour
         // Keep up with ball and move back so you can see it
         transform.position = ballToFollow.position - transform.forward * horizontalCameraOffset + transform.up * verticalCameraOffset; //Maybe get this offset as a vec3 in inspector
 
-        //TODO: Stop rotating into floor, walls, etc
+        // TODO: Stop rotating into floor, walls, etc
 
-        //Get the speed of player and set lens distort accordingly
+        // Get the speed of player and set lens distort accordingly
         var vel = player.GetVelocity() * distortMulti;
         if (vel >= maxLensDistort) vel = maxLensDistort;
-        distortion.intensity.value = -vel; //TODO: interpolate
+        // TODO: interpolate
+        distortion.intensity.value = -vel;
     }
 
-    public void LockMouse() //TODO: Move this to somewhere else
+    public void LockMouse()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

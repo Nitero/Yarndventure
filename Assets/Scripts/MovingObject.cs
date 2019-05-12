@@ -2,10 +2,10 @@
 
 public class MovingObject : MonoBehaviour
 {
-    //Rather use dotween? can work with rb too !!!!!!!!!!!!!!!!!!!!!
+    // TODO: Rather use dotween? Can work with rb too!!!
     private Rigidbody rb;
-    public Vector3 direction;
-    public float distance; //before turn around
+    [SerializeField] private Vector3 direction;
+    [SerializeField] private float distance; //before turn around
     private Vector3 startPos;
 
     private void Start()
