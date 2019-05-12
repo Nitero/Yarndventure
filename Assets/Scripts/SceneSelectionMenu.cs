@@ -102,6 +102,6 @@ public class SceneSelectionMenu : MonoBehaviour
     // Determines which level scene is loaded
     private void LoadLevel(int level)
     {
-        SceneManager.LoadScene(level - 1);
+        SceneManager.LoadScene(level);
     }
 }

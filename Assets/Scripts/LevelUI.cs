@@ -47,20 +47,18 @@ public class LevelUI : MonoBehaviour
     // Next Level Button onclick function
     public void PlayNextLevel()
     {
-        // after the last level, you go to the MainMenu
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Transition.Next();
     }
 
     // Play Again Button onclick function
     public void PlayAgain()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Transition.Reload();
     }
 
     // Go to Menu Button onclick function
     public void GoToMenu()
     {
-        // At the moment the order is levels -> menu -> scene selection
-        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 2);
+        Transition.Start();
     }
 }

@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class EndingMenu : MonoBehaviour
 {
     //Show Level 1 from Scenes In Build
-    public void PlayGame()
+    public void PlayGameAgain()
     {
-        Transition.Next();
+        Transition.Start();
     }
 
     public void ExitGame()
     {
         Transition.Quit();
+    }
+
+    public void SceneSelection()
+    {
+        Transition.Next();
     }
 }
