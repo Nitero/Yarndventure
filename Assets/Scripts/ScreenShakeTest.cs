@@ -76,6 +76,7 @@ public class ScreenShakeTest : MonoBehaviour
     }
 }
 
+
 public static class ExtensionMethods
 {
 
