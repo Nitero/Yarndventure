@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TerrainGenerator : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class TerrainGenerator : MonoBehaviour
     public float maxDist = 200;
     public float fogPosition = -15;
     public int seed;
-    public bool rand = true;
     public bool seedByLevel = false;
 
     void Start()
@@ -28,9 +28,13 @@ public class TerrainGenerator : MonoBehaviour
 
         par.layer = 2; //Ignore raycasts
 
-        if (!rand)
+        if (seed != 0)
         {
             Random.seed = seed;//(int)System.DateTime.Now.Ticks;
+        }
+        if(seedByLevel)
+        {
+            Random.seed = SceneManager.GetActiveScene().buildIndex + seed;
         }
 
         for (int i = 0; i < ammountOfCubes; i++)

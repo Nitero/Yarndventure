@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class CameraController : MonoBehaviour
 {
@@ -11,9 +12,19 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float horizontalCameraOffset = 3;
     [SerializeField] private float verticalCameraOffset = 3;
 
+    [SerializeField] private float maxLensDistort = 20; //https://docs.unity3d.com/Packages/com.unity.postprocessing@2.0/manual/Manipulating-the-Stack.html
+    [SerializeField] private float distortMulti = 2;
+    private LensDistortion distortion;
+    private PlayerController player;
+
     void Start()
     {
         LockMouse();
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+        PostProcessVolume volume = gameObject.GetComponent<PostProcessVolume>();
+        distortion = volume.profile.GetSetting<LensDistortion>();
     }
 
     void Update()
@@ -28,6 +39,12 @@ public class CameraController : MonoBehaviour
         transform.position = ballToFollow.position - transform.forward * horizontalCameraOffset + transform.up * verticalCameraOffset; //Maybe get this offset as a vec3 in inspector
 
         //TODO: Stop rotating into floor, walls, etc
+
+
+        //Get the speed of player and set lens distort accordingly
+        var vel = player.getVelocity() * distortMulti;
+        if (vel >= maxLensDistort) vel = maxLensDistort;
+        distortion.intensity.value = -vel; //TODO: interpolate
     }
 
     public void LockMouse() //TODO: Move this to somewhere else
