@@ -12,7 +12,7 @@ public static class SaveLoadManager
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         FileStream fileStream = new FileStream(Application.persistentDataPath + nameOfSaveFile, FileMode.Create);
-        
+
         TimeKeeper data = new TimeKeeper(newBestTimes);
         binaryFormatter.Serialize(fileStream, data);
         fileStream.Close();
@@ -24,30 +24,33 @@ public static class SaveLoadManager
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             FileStream fileStream = new FileStream(Application.persistentDataPath + nameOfSaveFile, FileMode.Open);
-        
+
             TimeKeeper data = binaryFormatter.Deserialize(fileStream) as TimeKeeper;
-            
+
             fileStream.Close();
             return data.GetTimes();
-        } else {
+        }
+        else
+        {
             return ResetTimes();
         }
     }
 
     public static float[] ResetTimes()
     {
-        float[] newArray = new float[SceneManager.sceneCountInBuildSettings - 1];
+        float[] newArray = new float[SceneManager.sceneCountInBuildSettings];
 
-        for(int i = 0; i < newArray.Length; i++)
+        for (int i = 0; i < newArray.Length; i++)
         {
-                newArray[i] = float.MinValue;            
+            newArray[i] = float.MinValue;
         }
+        SaveTimes(newArray);
         return newArray;
     }
 }
 
 [Serializable]
-public class TimeKeeper 
+public class TimeKeeper
 {
     private float[] bestTimes;
 
