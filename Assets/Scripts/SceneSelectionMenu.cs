@@ -53,6 +53,13 @@ public class SceneSelectionMenu : MonoBehaviour
         switchToFirstPage = !switchToFirstPage;
     }
 
+    public void ResetRecords()
+    {
+        bestTimes = SaveLoadManager.ResetTimes();
+        SaveLoadManager.SaveTimes(bestTimes);
+        ShowTimeRecords();
+    }
+
     //Show Level 1 from Scenes In Build
     public void Level01()
     {
