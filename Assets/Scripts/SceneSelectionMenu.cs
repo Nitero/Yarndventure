@@ -41,55 +41,55 @@ public class SceneSelectionMenu : MonoBehaviour
     }
 
     //Show Level 1 from Scenes In Build
-    public void Level1()
+    public void Level01()
     {
         LoadLevel(1);
     }
 
     //Show Level 2 from Scenes In Build
-    public void Level2()
+    public void Level02()
     {
         LoadLevel(2);
     }
 
     //Show Level 3 from Scenes In Build
-    public void Level3()
+    public void Level03()
     {
         LoadLevel(3);
     }
 
     //Show Level 4 from Scenes In Build
-    public void Level4()
+    public void Level04()
     {
         LoadLevel(4);
     }
 
     //Show Level 5 from Scenes In Build
-    public void Level5()
+    public void Level05()
     {
         LoadLevel(5);
     }
 
     //Show Level 6 from Scenes In Build
-    public void Level6()
+    public void Level06()
     {
         LoadLevel(6);
     }
 
     //Show Level 7 from Scenes In Build
-    public void Level7()
+    public void Level07()
     {
         LoadLevel(7);
     }
 
     //Show Level 8 from Scenes In Build
-    public void Level8()
+    public void Level08()
     {
         LoadLevel(8);
     }
 
     //Show Level 9 from Scenes In Build
-    public void Level9()
+    public void Level09()
     {
         LoadLevel(9);
     }
