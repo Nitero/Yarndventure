@@ -81,10 +81,16 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(moveDir * moveSpeed, ForceMode.Force); //https://answers.unity.com/questions/789917/difference-and-uses-of-rigidbody-force-modes.html
 
+
         //Additional boost on using space (once when pressed)
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(moveDir * (fastSpeed / 4), ForceMode.Impulse);
+            //Mix out of camera look dir and moving direction... maybe just one of either?
+            //rb.AddForce(moveDir * (fastSpeed / 8), ForceMode.Impulse);
+            //rb.AddForce(Camera.main.transform.forward * (fastSpeed / 8), ForceMode.Impulse);
+
+            rb.AddForce(moveDir * (fastSpeed / 4), ForceMode.Impulse); //More intuitive?
+            //rb.AddForce(Camera.main.transform.forward * (fastSpeed / 4), ForceMode.Impulse);
         }
 
 

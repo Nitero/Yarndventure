@@ -21,7 +21,7 @@ public class ParticleManager : MonoBehaviour
 
     void Update()
     {
-        if (player.getVelocity() >= playerFastThreshold)
+        if (player.GetVelocity() >= playerFastThreshold)
         {
             //windTrail.Play();
         }
@@ -30,7 +30,7 @@ public class ParticleManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) //Wind trails based on how fast player is
         {
-            int ammount = Mathf.RoundToInt(player.getVelocity() * 1.5f);
+            int ammount = Mathf.RoundToInt(player.GetVelocity() * 1.5f);
             if (ammount >= 30) ammount = 30;
             for(int i = 0; i < ammount; i++)
             {
