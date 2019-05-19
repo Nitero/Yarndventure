@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         activateMovement = true;
     }
 
-    private void Update()
+    private void Update() //TODO: don't change rigidbody here!
     {
         if (activateMovement)
         {
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = horMove.normalized * moveSpeed;
         rb.velocity = horMove + new Vector3(0, rb.velocity.y, 0);*/
 
-        //TODO: better controlls... dont use addforce? more gravity? or change mass? 
+        //TODO: better controlls... dont use addforce? more mass! 
     }
 
     public void StopMovement()

@@ -135,8 +135,11 @@ MonoBehaviour:
   lookSpeed: 1
   horizontalCameraOffset: 2
   verticalCameraOffset: 0.75
+  normalFoV: 70
+  maxFoV: 90
+  FoVMulti: 2
   maxLensDistort: 45
-  distortMulti: 2
+  distortMulti: 0.5
 --- !u!114 &1622163404634676702
 MonoBehaviour:
   m_ObjectHideFlags: 0

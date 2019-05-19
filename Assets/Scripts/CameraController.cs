@@ -8,15 +8,22 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float horizontalCameraOffset = 3;
     [SerializeField] private float verticalCameraOffset = 3;
 
+    [SerializeField] private float normalFoV = 70; 
+    [SerializeField] private float maxFoV = 90; 
+    [SerializeField] private float FoVMulti = 2; 
+
     [SerializeField] private float maxLensDistort = 20; //https://docs.unity3d.com/Packages/com.unity.postprocessing@2.0/manual/Manipulating-the-Stack.html
     [SerializeField] private float distortMulti = 2;
     private LensDistortion distortion;
     private PlayerController player;
+    private Camera cam;
+
 
     private void Start()
     {
         LockMouse();
 
+        cam = GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         PostProcessVolume volume = gameObject.GetComponent<PostProcessVolume>();
@@ -41,6 +48,7 @@ public class CameraController : MonoBehaviour
         if (vel >= maxLensDistort) vel = maxLensDistort;
         // TODO: interpolate
         distortion.intensity.value = -vel;
+        cam.fieldOfView = normalFoV + vel * FoVMulti;
     }
 
     public void LockMouse()
