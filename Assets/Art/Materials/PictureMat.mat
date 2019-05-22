@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PictureMat
+  m_Shader: {fileID: 4800000, guid: 72fb80a88302fbf4db514baff93ac97c, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_756FFBAE:
+        m_Texture: {fileID: 2800000, guid: 614791a7b47ede549ace3fa1b552b33c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_A50A2BFE:
+        m_Texture: {fileID: 2800000, guid: 42d847ef5927eba459a5fe6c0d9a8772, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_52D5249A: 5
+    - Vector1_82D0164F: 0.05
+    - Vector1_A0C503EB: 5
+    - Vector1_DC4BE2E1: 0.5
+    - Vector1_EE7BD292: 1
+    - Vector1_FC489838: 1.5
+    m_Colors:
+    - Color_3EF51202: {r: 0.3350784, g: 1.375671, b: 2, a: 0}
+    - Color_AA1D8552: {r: 0, g: 0.206775, b: 1, a: 0}
