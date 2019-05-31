@@ -24,10 +24,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_A50A2BFE:
-        m_Texture: {fileID: 2800000, guid: 42d847ef5927eba459a5fe6c0d9a8772, type: 3}
+        m_Texture: {fileID: 2800000, guid: 03dfb08aca29ac841b07fdc2b3a15b91, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ImageTex:
+        m_Texture: {fileID: 2800000, guid: 03dfb08aca29ac841b07fdc2b3a15b91, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Wobbl:
+        m_Texture: {fileID: 2800000, guid: 614791a7b47ede549ace3fa1b552b33c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_5057C29: 0.5
     - Vector1_52D5249A: 5
     - Vector1_82D0164F: 0.05
     - Vector1_A0C503EB: 5
