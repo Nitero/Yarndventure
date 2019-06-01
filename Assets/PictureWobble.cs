@@ -5,11 +5,12 @@ using UnityEngine;
 public class PictureWobble : MonoBehaviour
 {
 
-    [SerializeField] private AnimationCurve test;
+    [SerializeField] private AnimationCurve testCurve;
 
     // maybe use: https://docs.unity3d.com/Manual/class-CustomRenderTexture.html !!!!!!!!!!!!
     [SerializeField] private CustomRenderTexture wobbleTex;
     [SerializeField] private int resolution = 256;
+    [SerializeField] private float heightMulti = 1;
     [SerializeField] private float speed = 10;
     [SerializeField] private float speedFalloff = 0.1f;
     [SerializeField] private float heightFalloff = 0.1f;
@@ -17,10 +18,74 @@ public class PictureWobble : MonoBehaviour
     private Material mat;
     private Texture2D texture;
     private int middle;
-       
+    private float timer;
+
+
+
+    void Start()
+    {
+        if (GetComponent<MeshRenderer>() != null) mat = GetComponent<MeshRenderer>().material;
+
+        // Create a new 2x2 texture ARGB32 (32 bit with alpha) and no mipmaps
+        texture = new Texture2D(resolution, resolution, TextureFormat.ARGB32, false);
+        texture.filterMode = FilterMode.Point;
+
+        // Set all black at start (stationary)
+        for (int y = 0; y < texture.height; y++)
+            for (int x = 0; x < texture.width; x++)
+                texture.SetPixel(x, y, Color.black);
+
+        texture.Apply();
+
+        middle = texture.height / 2;
+
+    }
+
+
+    void LateUpdate()
+    {
+        timer -= Time.deltaTime * speed;
+
+        // NOT PERFORMANT, instead do this once? or every couple of frames??? or just lover resolution....
+
+        var mid = new Vector2(middle, middle);
+
+        for (int y = 0; y < texture.height; y++)
+            for (int x = 0; x < texture.width; x++)
+            {
+                var distFromMiddle = Vector2.Distance(mid, new Vector2(x,y));
+                distFromMiddle += timer; //Move it
+
+
+                var ix = distFromMiddle / resolution;
+
+                ix = 1 + ix; //Start behind so that everything is flat at first
+
+                float height = testCurve.Evaluate(ix); // y
+
+                height *= heightMulti; // How to animate better? more drops? sinus?
+
+                texture.SetPixel(x, y, new Color(height, height, height, 1));
+            }
+
+
+
+
+        texture.Apply(); // Apply all SetPixel calls
+
+        mat.SetTexture("_Wobbl", texture);
+    }
+
+
+
+
+
+
+    /*
     private droplet oneDrop;
     private droplet oneDrop2;
 
+    
     private class droplet
     {
         private int position;
@@ -55,6 +120,7 @@ public class PictureWobble : MonoBehaviour
             //texture.Circle(middle, middle, 32, Color.black);
         }
     }
+    
 
 
     void Start()
@@ -109,6 +175,8 @@ public class PictureWobble : MonoBehaviour
 
         //print(texture.get);
     }
+
+    */
 }
 
 
