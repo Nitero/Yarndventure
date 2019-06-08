@@ -111,7 +111,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c141d1bb53cf13438e3f09cdcbb8be0, type: 2}
+  - {fileID: 2100000, guid: efc5419035b2ed3439de0e4f7c297314, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,7 +188,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c141d1bb53cf13438e3f09cdcbb8be0, type: 2}
+  - {fileID: 2100000, guid: efc5419035b2ed3439de0e4f7c297314, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -425,7 +425,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c141d1bb53cf13438e3f09cdcbb8be0, type: 2}
+  - {fileID: 2100000, guid: efc5419035b2ed3439de0e4f7c297314, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -532,7 +532,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c141d1bb53cf13438e3f09cdcbb8be0, type: 2}
+  - {fileID: 2100000, guid: efc5419035b2ed3439de0e4f7c297314, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -609,7 +609,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c141d1bb53cf13438e3f09cdcbb8be0, type: 2}
+  - {fileID: 2100000, guid: efc5419035b2ed3439de0e4f7c297314, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -773,11 +773,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1512201313154096415, guid: 09bfb12d573f6f64d993da206a473572,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9c141d1bb53cf13438e3f09cdcbb8be0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09bfb12d573f6f64d993da206a473572, type: 3}
 --- !u!4 &2357462728101125974 stripped

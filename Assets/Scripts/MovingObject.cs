@@ -5,6 +5,7 @@ public class MovingObject : MonoBehaviour
     // TODO: Rather use dotween? Can work with rb too!!!
     private Rigidbody rb;
     [SerializeField] private Vector3 direction;
+    [SerializeField] private float speed = 1f;
     [SerializeField] private float distance; //before turn around
     private Vector3 startPos;
 
@@ -20,11 +21,15 @@ public class MovingObject : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z) + direction * Time.deltaTime;
-        if (Vector3.Distance(startPos, transform.position) >= distance)
-        {
+        //float dist = Vector3.Distance(startPos, transform.position);
+
+        transform.position += direction * Time.deltaTime * speed; //* (distance-dist);
+
+        float dist = Vector3.Distance(startPos, transform.position);
+
+        if (dist >= distance)
             direction = -direction;
-        }
+        
     }
 
     public void Reset()

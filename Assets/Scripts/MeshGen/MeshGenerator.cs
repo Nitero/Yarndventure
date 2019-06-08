@@ -13,8 +13,9 @@ public class MeshGenerator : MonoBehaviour
     public MeshFilter filter;/*?*/
     //public MeshTypeFilter plane;/*?*/
     //public AbstractMesh plane;/*?*/
+    public Material[] mats;
 
-
+    public bool autoGenOnChange = true;
     public bool showGizmo;
     public float gizmoRadius = 0.5f;
     public int density = 3;
@@ -23,18 +24,27 @@ public class MeshGenerator : MonoBehaviour
     //public int densityZ = 3;
     public float stepTime = 0.1f;
 
-    public enum MeshType { plane, perlinLandscape, cone, ball, snail, snail2, otherThing };
+
+
+    public enum MeshType { plane, perlinLandscape, cone, ball, snail, snail2 /*, dini*/ };
+    [Space]
+    [Header("Change these two:")]
     public MeshType meshType = MeshType.plane;
 
-    public bool autoGenOnChange = true;
+    public enum MatType { lit, waterShader, fog };
+    public MatType materialType = MatType.lit;
+    private MatType currMatType;
+
+
 
     private Mesh mesh;
+    private MeshRenderer meshRend;
     private Vector3[] vertices;
     private Vector2[] uvs;
     private int[] triangIndices;
 
     [Space]
-    [Header("Type parameters")]
+    [Header("Type parameters:")]
     public float planeUV = 1f;
     [Space]
     public float perlinDens = 1f;
@@ -47,10 +57,13 @@ public class MeshGenerator : MonoBehaviour
     public float ballUV = 6.283185f; // 2 pi
     public float ballScale = 1;
     [Space]
+    public float diniA = 1;
+    public float diniB = 0.3f;
+    public float diniUV = 1;
+    [Space]
     public float[] snailParam = new float[] { 0.5f, 1f, 0.1f, 2f, 1f};
     [Space]
     public float[] snail2Param = new float[] { 1f, 0.5f, 1f, 1f, -2f, 1f};
-
 
 
 
@@ -60,16 +73,25 @@ public class MeshGenerator : MonoBehaviour
         mesh.name = meshType.ToString();
         filter.mesh = mesh;
 
+        meshRend = GetComponent<MeshRenderer>();
+        meshRend.material = mats[(int)materialType];
+        currMatType = materialType;
+
         StartCoroutine(gen_mesh());
     }
 
 
     private void Update()
     {
-        if(autoGenOnChange)
+        if(autoGenOnChange)//TODO: if the values changed
         {
-            //TODO: if the values changed
             generateMesh();
+        }
+
+        if(currMatType != materialType)
+        {
+            currMatType = materialType;
+            meshRend.material = mats[(int)materialType];
         }
 
         updateMesh();
@@ -134,7 +156,6 @@ public class MeshGenerator : MonoBehaviour
             }
             vert++;
         }
-        
     }
 
 
@@ -263,15 +284,31 @@ public class MeshGenerator : MonoBehaviour
             return new Vector3(x, y, z);
         }
 
-        /*
-        if (type == MeshType.otherThing)
+        // crashes...
+        /*if (type == MeshType.dini) //https://en.wikipedia.org/wiki/Dini%27s_surface
         {
-            var _uv = uv;
-            _uv.Scale(new Vector2(pi2, pi2));
-            _uv += new Vector2(0, pi/2);
-            return new Vector3(uv.x * Mathf.Cos(uv.y) *Mathf.Sin(uv.x), ..., ...);
+            float a = diniA;
+            float b = diniB;
+            float u = uv.x * diniUV;
+            float v = uv.y * diniUV;
+
+            float x = a * Mathf.Cos(u) * Mathf.Sin(v);
+            float y = a * (Mathf.Cos(v) + Mathf.Log(Mathf.Tan(v / 2))) + b * u; 
+            float z = a * Mathf.Sin(u) * Mathf.Sin(v);
+
+            return new Vector3(x, y, z);
         }*/
+
+
+        //More:
+        //https://en.wikipedia.org/wiki/Parametric_surface
+        //https://en.wikipedia.org/wiki/Klein_bottle
+        //https://en.wikipedia.org/wiki/Boy%27s_surface
+        //https://www.grasshopper3d.com/profiles/profile/show?id=parametric&
+
 
         return Vector3.zero;
     }
+
+
 }

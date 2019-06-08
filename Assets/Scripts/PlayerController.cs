@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Experimental.VFX;
 
 public class PlayerController : MonoBehaviour
 {
     private RopeController rope;
+    [SerializeField] private VisualEffect fireEffect;
+    [SerializeField] private float fireTresh = 5f;
     [SerializeField] private float airVelocityMax = 10f;
     [SerializeField] private float slowSpeed = 10f;
     [SerializeField] private float fastSpeed = 20f;
@@ -26,6 +29,10 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main.GetComponent<CameraController>();
         pos = transform.position;
         activateMovement = true;
+        //fireEffect.SendEvent("OnStop");
+        //fireEffect.Stop();
+        //fireEffect.SetBool("OnStop", true);
+        fireEffect.SetFloat("Partics", 0);
     }
 
     private void Update() //TODO: don't change rigidbody here!
@@ -37,6 +44,10 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Space))
             {// && Input.GetKey (KeyCode.W)) {
+
+                //fireEffect.SendEvent("OnPlay");
+                //fireEffect.Play();
+
                 moveSpeed = fastSpeed;
                 // }  else if (Input.anyKey == false && currentSpeed >= EPSILON) {     
                 // maybe a formular for slowing down slowly, when no key is pressed?
@@ -60,6 +71,9 @@ public class PlayerController : MonoBehaviour
                 rb.drag = drag; //maybe after using rope, slowly go down to normal drag
             }
         }
+
+        if (rb.velocity.magnitude >= fireTresh) fireEffect.SetFloat("Partics", 10 * rb.velocity.magnitude * rb.velocity.magnitude);
+        else fireEffect.SetFloat("Partics", 0);
     }
 
     private void FixedUpdate()

@@ -37,7 +37,7 @@ public class MeshVelocityDeform : MonoBehaviour
 
 
 
-        mat.SetVector("Vector3_FF646A34", velocity);
+        mat.SetVector("_Velo", velocity);
 
         print(velocity);
 
