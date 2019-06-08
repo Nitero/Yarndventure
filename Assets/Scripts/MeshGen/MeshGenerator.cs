@@ -13,83 +13,157 @@ public class MeshGenerator : MonoBehaviour
     public MeshFilter filter;/*?*/
     //public MeshTypeFilter plane;/*?*/
     //public AbstractMesh plane;/*?*/
-    public enum MeshType {plane, cone, snail, otherThing};
-    public MeshType meshType = MeshType.plane;
+
 
     public bool showGizmo;
     public float gizmoRadius = 0.5f;
     public int density = 3;
+    //public int densityX = 3;
+    //public int densityY = 3;
+    //public int densityZ = 3;
     public float stepTime = 0.1f;
 
+    public enum MeshType { plane, perlinLandscape, cone, ball, snail, snail2, otherThing };
+    public MeshType meshType = MeshType.plane;
+
+    public bool autoGenOnChange = true;
+
+    private Mesh mesh;
     private Vector3[] vertices;
     private Vector2[] uvs;
-    private int[] indices;
+    private int[] triangIndices;
+
+    [Space]
+    [Header("Type parameters")]
+    public float planeUV = 1f;
+    [Space]
+    public float perlinDens = 1f;
+    public float perlinHeight = 1f;
+    public float perlinUV = 1f;
+    [Space]
+    public float coneRadius = 1;
+    public float coneUV = 1;
+    [Space]
+    public float ballUV = 6.283185f; // 2 pi
+    public float ballScale = 1;
+    [Space]
+    public float[] snailParam = new float[] { 0.5f, 1f, 0.1f, 2f, 1f};
+    [Space]
+    public float[] snail2Param = new float[] { 1f, 0.5f, 1f, 1f, -2f, 1f};
+
+
+
 
     void Start()
     {
-        //vertices = new Vector3[(density + 1) * (density + 1)];/*?*/
-        //uvs = new Vector2[vertices.Length];/*?*/
-
+        mesh = new Mesh();
+        mesh.name = meshType.ToString();
+        filter.mesh = mesh;
 
         StartCoroutine(gen_mesh());
-        StartCoroutine(gen_indices());/*?*/
     }
 
 
-    IEnumerator gen_indices()
+    private void Update()
     {
-        indices = new int[(density + 1) * (density + 1) * 2 * 3];
-        for (int ti = 0, vi = 0, y = 0; y < density; y++, vi++)
-         for (int x = 0; x < density; x++, ti += 6 /*?*/, vi++)
-            {
-                indices[ti] = vi;
-                indices[ti + 3] = indices[ti + 3] * vi + 1;
-                indices[ti + 4] = indices[ti + 1] * vi + density + 1;
-                indices[ti + 5] = vi + density + 2;
-                yield return new WaitForSeconds(stepTime/*0?*/);
-            }
+        if(autoGenOnChange)
+        {
+            //TODO: if the values changed
+            generateMesh();
+        }
+
+        updateMesh();
     }
+
 
     IEnumerator gen_mesh()
     {
-        var mesh = new Mesh();
-        //mesh.name = filter.GetType().Name;
-        mesh.name = "Some Mesh Name";
-
         float floatDens = (float)density;
         vertices = new Vector3[(density + 1) * (density + 1)];
         uvs = new Vector2[vertices.Length];
 
-        for (int i = 0, v = 0; v < density; v++)
-        {
-            for (int u = 0; u < density; u++, i++)
+        //for (int i = 0, v = 0; v < density; v++)
+        //    for (int u = 0; u < density; u++, i++)
+        for (int i = 0, v = 0; v <= density; v++)
+            for (int u = 0; u <= density; u++, i++)
             {
                 var uv = new Vector2(u / floatDens, v / floatDens);
 
-                //var vert = new Vector3(plane.x(uv), plane.y(uv), plane.z(uv));
-                var vert = getShape(meshType, uv);
-                vertices[i] = vert;
+                vertices[i] = getShape(meshType, uv); // Get a vert at this uv position
                 uvs[i] = uv;
+
+                //if (stepTime > 0) yield return new WaitForSeconds(stepTime);
+            }
+
+
+        /*
+        triangIndices = new int[(density + 1) * (density + 1) * 2 * 3];
+        for (int ti = 0, vi = 0, y = 0; y < density; y++, vi++)
+            for (int x = 0; x < density; x++, ti += 6, vi++)
+            {
+                triangIndices[ti] = vi;
+                triangIndices[ti + 3] = triangIndices[ti + 3] * vi + 1;
+                triangIndices[ti + 4] = triangIndices[ti + 1] * vi + density + 1;
+                triangIndices[ti + 5] = vi + density + 2;
 
                 if (stepTime > 0) yield return new WaitForSeconds(stepTime);
             }
+        */
+
+
+        // https://www.youtube.com/watch?v=64NblGkAabk    
+        
+        triangIndices = new int[density * density * 6];
+        int vert = 0;
+        int tris = 0;
+        for (int z = 0; z < density; z++)
+        {
+            for (int x = 0; x < density; x++)
+            {
+                triangIndices[tris + 0] = vert + 0;
+                triangIndices[tris + 1] = vert + density + 1;
+                triangIndices[tris + 2] = vert + 1;
+                triangIndices[tris + 3] = vert + 1;
+                triangIndices[tris + 4] = vert + density + 1; 
+                triangIndices[tris + 5] = vert + density + 2; 
+
+                vert++;
+                tris += 6;
+
+                if (stepTime > 0) yield return new WaitForSeconds(stepTime);
+            }
+            vert++;
         }
         
+    }
+
+
+
+    public void generateMesh()
+    {
+        StartCoroutine(gen_mesh());
+    }
+
+
+    private void updateMesh()
+    {
+        mesh.Clear();
 
         mesh.vertices = vertices;
         mesh.uv = uvs;
-        mesh.triangles = indices;
+        mesh.triangles = triangIndices;
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
         mesh.RecalculateTangents();
-        filter.mesh = mesh;
+        //Do all of these have to be updated every frame? Just after generation?
     }
+
 
 
     #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        if (showGizmo)
+        if (showGizmo && vertices != null)
         {
             Gizmos.color = Color.black;
 
@@ -104,6 +178,8 @@ public class MeshGenerator : MonoBehaviour
 
 
 
+
+
     private float pi = Mathf.PI;
     private float pi2 = Mathf.PI * 2;
 
@@ -111,7 +187,80 @@ public class MeshGenerator : MonoBehaviour
     {
         if (type == MeshType.plane)
         {
-            return new Vector3(uv.x, uv.y, 0);
+            return new Vector3(uv.x * planeUV, 0, uv.y * planeUV);
+        }
+
+        if (type == MeshType.perlinLandscape)
+        {
+            float u = uv.x * perlinUV;
+            float v = uv.y * perlinUV;
+
+            return new Vector3(u, Mathf.PerlinNoise(u * perlinDens, v * perlinDens) * perlinHeight, v);
+        }
+
+        if (type == MeshType.cone) //https://www.poritz.net/j/past_classes/spring14/ml/parametric.html
+        {
+            //coneScale
+
+            float phi = uv.x * coneUV;
+            float theta = uv.y * coneUV;
+
+            float x = coneRadius * phi * Mathf.Cos(theta);
+            float y = coneRadius * phi;
+            float z = coneRadius * phi * Mathf.Sin(theta);
+
+            return new Vector3(x,y,z);
+        }
+
+        if (type == MeshType.ball)
+        {
+            float phi = uv.x * ballUV;
+            float theta = uv.y * ballUV;
+
+            float x = ballScale * Mathf.Sin(phi)* Mathf.Cos(theta);
+            float y = ballScale * Mathf.Cos(phi);
+            float z = ballScale * Mathf.Sin(phi)* Mathf.Sin(theta);
+
+            return new Vector3(x,y,z);
+        }
+
+
+        if (type == MeshType.snail) //http://www.foundalis.com/mat/hornsnail.htm
+        {
+            float a = snailParam[0];
+            float b = snailParam[1];
+            float t = snailParam[2];
+            float n = snailParam[3];
+            float u = uv.x * snailParam[4];
+            float v = uv.y * snailParam[4];
+
+            //float x = a * ((1 - v) / pi2) * Mathf.Cos(n * v) * (1 + Mathf.Cos(u)) + t * Mathf.Cos(n * v);
+            float x = a * (1 - v / pi2) * Mathf.Cos(n * v) * (1 + Mathf.Cos(u)) + t * Mathf.Cos(n * v);
+            float y = a * (1 - v / pi2) * Mathf.Sin(n * v) * (1 + Mathf.Cos(u)) + t * Mathf.Sin(n * v);
+            float z = a * (1 - v / pi2) * Mathf.Sin(u) + b * v/pi;
+
+            return new Vector3(x,y,z);
+        }
+
+        if (type == MeshType.snail2) //http://virtualmathmuseum.org/Surface/snailshell/snailshell.html
+        {
+            float aa = snail2Param[0];
+            float bb = snail2Param[1];
+            float cc = snail2Param[2];
+            float dd = snail2Param[3];
+            float ee = snail2Param[4];
+            float u = uv.x * snail2Param[5];
+            float v = uv.y * snail2Param[5];
+            float vv = v + Mathf.Pow((v + ee), 2/16);
+            float s = Mathf.Exp(-cc * vv);
+            float r = s * (aa + bb * Mathf.Cos(u));
+
+            float x = r * Mathf.Cos(vv);
+            float y = r * Mathf.Sin(vv);
+            float z = dd *(1-s) + s * bb * Mathf.Sin(u);
+
+
+            return new Vector3(x, y, z);
         }
 
         /*
@@ -122,32 +271,6 @@ public class MeshGenerator : MonoBehaviour
             _uv += new Vector2(0, pi/2);
             return new Vector3(uv.x * Mathf.Cos(uv.y) *Mathf.Sin(uv.x), ..., ...);
         }*/
-
-        /*if (type == MeshType.cone) //https://www.poritz.net/j/past_classes/spring14/ml/parametric.html
-        {
-            float radius = 1;
-            float angle = 90;
-
-            return new Vector3(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle), radius);
-        }*/
-
-        if (type == MeshType.snail) //http://www.foundalis.com/mat/hornsnail.htm OR http://virtualmathmuseum.org/Surface/snailshell/snailshell.html
-        {
-            float a = 0.5f;
-            float b = 1f;
-            float t = 0.1f;
-            float n = 2f;
-            float u = uv.x;
-            float v = uv.y;
-
-            //float x = a * ((1 - v) / pi2) * Mathf.Cos(n * v) * (1 + Mathf.Cos(u)) + t * Mathf.Cos(n * v);
-            float x = a * (1 - v / pi2) * Mathf.Cos(n * v) * (1 + Mathf.Cos(u)) + t * Mathf.Cos(n * v);
-            float y = a * (1 - v / pi2) * Mathf.Sin(n * v) * (1 + Mathf.Cos(u)) + t * Mathf.Sin(n * v);
-            float z = a * (1 - v / pi2) * Mathf.Sin(u) + b * v/pi;
-
-            return new Vector3(x,y,z);
-        }
-
 
         return Vector3.zero;
     }
