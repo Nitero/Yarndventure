@@ -9,6 +9,11 @@ public class MainMenu : MonoBehaviour
         Transition.Next();
     }
 
+    public void TechDemo()
+    {
+        Transition.Next();
+    }
+
     public void ExitGame()
     {
         Transition.Quit();
