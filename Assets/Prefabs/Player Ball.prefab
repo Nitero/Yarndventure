@@ -5111,6 +5111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireEffect: {fileID: 3388335594343038727}
+  fireTresh: 5
   airVelocityMax: 10
   slowSpeed: 16
   fastSpeed: 32
@@ -5176,6 +5177,9 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
+      - m_Value: 10000
+        m_Name: Partics
+        m_Overridden: 0
       - m_Value: 1024
         m_Name: Resolution
         m_Overridden: 0
