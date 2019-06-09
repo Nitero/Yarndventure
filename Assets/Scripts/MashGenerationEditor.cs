@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 
 [CustomEditor(typeof(MeshGenerator))]
@@ -17,3 +18,4 @@ public class MashGenerationEditor : Editor
             generatorScript.generateMesh();
     }
 }
+#endif
