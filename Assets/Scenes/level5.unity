@@ -1039,6 +1039,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6020619991996678580, guid: 565ee4c71cf267a419c42b996f61c128,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020619991996678580, guid: 565ee4c71cf267a419c42b996f61c128,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020619991996678580, guid: 565ee4c71cf267a419c42b996f61c128,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Name
+      value: MaxParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020619991996678580, guid: 565ee4c71cf267a419c42b996f61c128,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020619991996678580, guid: 565ee4c71cf267a419c42b996f61c128,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Name
+      value: MaxSize
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020619991996678580, guid: 565ee4c71cf267a419c42b996f61c128,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[3].m_Name
+      value: MinDistance
+      objectReference: {fileID: 0}
     - target: {fileID: 1458324556840386160, guid: 565ee4c71cf267a419c42b996f61c128,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
