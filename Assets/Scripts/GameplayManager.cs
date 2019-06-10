@@ -15,20 +15,43 @@ public class GameplayManager : MonoBehaviour
     private Timer timer;
     private ScreenShakeTest screnshake;
     private Vector3 spawnPos;
+    private static bool techDemo;
+
+    private void Awake()
+    {
+        string sceneName = SceneManager.GetActiveScene().name.ToLower();
+        techDemo = sceneName.Contains("vfx");
+    }
 
     private void Start()
     {
         timer = GameObject.FindObjectOfType<Timer>();
-        spawnPos = player.transform.position;
-        screnshake = Camera.main.GetComponent<ScreenShakeTest>();
-
-        score = new Score();
+        
         levelUI = GameObject.FindGameObjectWithTag("LevelUI").GetComponent<LevelUI>();
         levelUI.SelectGamePlayUI();
+
+        if(techDemo) 
+        {
+            levelUI.PrepareTechDemo();
+            return;
+        }
+
+        spawnPos = player.transform.position;
+        screnshake = Camera.main.GetComponent<ScreenShakeTest>();
+        score = new Score();
     }
 
     private void Update()
     {
+        if(techDemo)
+        {
+            if(timer.GetCurrentTime() > 12) {
+                levelUI.PlayNextLevel();
+            }
+            return;
+        }
+
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(RestartTimer());
@@ -81,4 +104,10 @@ public class GameplayManager : MonoBehaviour
         yield return new WaitForSeconds(holdRespawnDelay);
         RespawnPlayer();
     }
+    
+    public static bool isTechDemo()
+    {
+        return techDemo;
+    }
+
 }

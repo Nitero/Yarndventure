@@ -61,4 +61,21 @@ public class LevelUI : MonoBehaviour
     {
         Transition.Start();
     }
+
+    public void PrepareTechDemo()
+    {
+        levelMenu.SetActive(false);
+
+        Component[] components;
+        components = gameplay.GetComponentsInChildren<Component>();
+
+        foreach (Component component in components)
+        {
+            string componentName = component.gameObject.ToString();
+            if(componentName.Contains("Crosshair"))
+            {                
+                component.gameObject.SetActive(false);
+            }            
+        }        
+    }
 }

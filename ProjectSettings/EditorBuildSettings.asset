@@ -57,6 +57,36 @@ EditorBuildSettings:
     path: Assets/Scenes/testlevel16.unity
     guid: 57cfc0c15e976154a93bd8d6f2414133
   - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/vfxGoal.unity
+    guid: 9e8f7a3920fdd88478d33e7545c492cb
+  - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/VFX- Portal.unity
+    guid: e1582d7e45b8bff4f91bc7d6daf752a4
+  - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/vfxMathFunc.unity
+    guid: 5ccd3defa8e4cb64bb8c2aa29d10bae8
+  - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/vfxMathFunc2.unity
+    guid: 7831a471f24abf74a9c58e2da4b71fcc
+  - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/vfxMathFunc3.unity
+    guid: 2f224051b7e14e34f8d1ec98b937f5f2
+  - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/vfxMathFunc4.unity
+    guid: 00c3ebb2670649340a710d9327411303
+  - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/vfxMathFunc5.unity
+    guid: 2bf88e0f4d5c2ae419132eaaa37fb997
+  - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/vfxQuadratic.unity
+    guid: 6b95b5a68a58ffa49a88340ca3f6575a
+  - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/vfxTest.unity
+    guid: 08b10627af15e084cb26cb44a1cd17d8
+  - enabled: 1
+    path: Assets/Scenes/Shader, Vfx, Mesh/vfxTest2.unity
+    guid: 30c51414e7e86aa49a470e5364167968
+  - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: 0045ad0650f6fae4e8bfbed65018a299
   - enabled: 1

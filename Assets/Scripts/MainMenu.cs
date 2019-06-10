@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
     public void TechDemo()
     {
-        Transition.Next();
+        SceneManager.LoadScene(17);
     }
 
     public void ExitGame()

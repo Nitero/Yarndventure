@@ -14,12 +14,23 @@ public class ParticleManager : MonoBehaviour
 
     private void Start()
     {
+        if(GameplayManager.isTechDemo()) {
+            return;
+        } 
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         windTrail = Camera.main.GetComponentInChildren<ParticleSystem>();
+        
     }
 
     private void Update()
     {
+
+        if(GameplayManager.isTechDemo())
+        {
+            return;
+        }
+
         if (player.GetVelocity() >= playerFastThreshold)
         {
             //windTrail.Play();
