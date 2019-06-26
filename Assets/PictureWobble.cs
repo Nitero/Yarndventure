@@ -15,6 +15,7 @@ public class PictureWobble : MonoBehaviour
     [SerializeField] private float speedFalloff = 0.1f;
     [SerializeField] private float heightFalloff = 0.1f;
     [SerializeField] private int initialThickness = 10;
+    [SerializeField] private bool noRenderPipeline;
     private Material mat;
     private Texture2D texture;
     private int middle;
@@ -73,7 +74,11 @@ public class PictureWobble : MonoBehaviour
 
         texture.Apply(); // Apply all SetPixel calls
 
-        mat.SetTexture("_Wobbl", texture);
+
+        if(!noRenderPipeline)
+            mat.SetTexture("_Wobbl", texture);
+        else
+            mat.SetTexture("_RippleTex", texture);
     }
 
 
