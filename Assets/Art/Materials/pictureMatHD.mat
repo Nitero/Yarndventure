@@ -30,7 +30,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Wobbl:
-        m_Texture: {fileID: 2800000, guid: 614791a7b47ede549ace3fa1b552b33c, type: 3}
+        m_Texture: {fileID: 2800000, guid: a7024b8a3e2a7b840af43a742f9190f0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:

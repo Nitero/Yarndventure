@@ -6,26 +6,51 @@ public class PictureWobble : MonoBehaviour
 {
 
     [SerializeField] private AnimationCurve testCurve;
+    //[SerializeField] private AnimationCurve speedCurve;
 
     // maybe use: https://docs.unity3d.com/Manual/class-CustomRenderTexture.html !!!!!!!!!!!!
-    [SerializeField] private CustomRenderTexture wobbleTex;
+    //[SerializeField] private CustomRenderTexture wobbleTex;
     [SerializeField] private int resolution = 256;
     [SerializeField] private float heightMulti = 1;
-    [SerializeField] private float speed = 10;
-    [SerializeField] private float speedFalloff = 0.1f;
-    [SerializeField] private float heightFalloff = 0.1f;
+    //[SerializeField] private float initSpeed = 200;
+    //[SerializeField] private float speedMin = 100;
+    //[SerializeField] private float speedFalloff = 0.1f;
+    [SerializeField] private float startAt = 0.1f;
+    [SerializeField] private float estimatedDur = 2f;
+    [SerializeField] private Vector2 speedMinMaxOverDur;
+    //[SerializeField] private AnimationCurve speedCurveOverDur;
+
+    [SerializeField] private float heightFalloff = 10;
     [SerializeField] private int initialThickness = 10;
-    [SerializeField] private bool noRenderPipeline;
+    [SerializeField] private Mesh highResPlane;
+
+    private float heightMinus;
     private Material mat;
     private Texture2D texture;
     private int middle;
+    private float speed;
     private float timer;
+    private float distanceTimer;
+    private bool wobbleActive;
 
-
+    [SerializeField] private bool startImmedietly;
 
     void Start()
     {
+        GetComponent<MeshRenderer>().receiveShadows = false;
+
+        //speed = initSpeed;
+        if (startImmedietly) activateWobble();
+        //Invoke("init", 2);
+    }
+
+    public void activateWobble()
+    {
         if (GetComponent<MeshRenderer>() != null) mat = GetComponent<MeshRenderer>().material;
+
+        GetComponent<MeshRenderer>().receiveShadows = true;
+
+        distanceTimer = startAt;
 
         // Create a new 2x2 texture ARGB32 (32 bit with alpha) and no mipmaps
         texture = new Texture2D(resolution, resolution, TextureFormat.ARGB32, false);
@@ -39,13 +64,33 @@ public class PictureWobble : MonoBehaviour
         texture.Apply();
 
         middle = texture.height / 2;
+        mat.SetFloat("_Amount", heightMulti);
 
+        GetComponent<MeshFilter>().mesh = highResPlane;
+        wobbleActive = true;
     }
 
 
     void LateUpdate()
     {
-        timer -= Time.deltaTime * speed;
+        if (!wobbleActive) return;
+
+        //speed -= Time.deltaTime * speedFalloff;
+        //if (speed <= 0) speed = 0;
+        //print(speed);
+        //timer -= Time.deltaTime * speed;
+
+
+        heightMinus -= Time.deltaTime * heightFalloff;
+
+        timer += Time.deltaTime;
+
+        var speed = timer.Remap(0, estimatedDur, speedMinMaxOverDur.x, speedMinMaxOverDur.y);
+        if (speed <= 0) speed = 0;
+        distanceTimer -= Time.deltaTime * speed;
+
+        //print(distanceTimer);
+
 
         // NOT PERFORMANT, instead do this once? or every couple of frames??? or just lover resolution....
 
@@ -54,36 +99,35 @@ public class PictureWobble : MonoBehaviour
         for (int y = 0; y < texture.height; y++)
             for (int x = 0; x < texture.width; x++)
             {
-                var distFromMiddle = Vector2.Distance(mid, new Vector2(x,y));
-                distFromMiddle += timer; //Move it
-
+                var distFromMiddle = Vector2.Distance(mid, new Vector2(x, y));
+                distFromMiddle += distanceTimer; //Move it
 
                 var ix = distFromMiddle / resolution;
 
                 ix = 1 + ix; //Start behind so that everything is flat at first
 
-                float height = testCurve.Evaluate(ix); // y
+                float height = testCurve.Evaluate(ix) + heightMinus; // y
 
-                height *= heightMulti; // How to animate better? more drops? sinus?
+                //height *= heightMulti; // How to animate better? more drops? sinus?
 
                 texture.SetPixel(x, y, new Color(height, height, height, 1));
             }
 
 
-
-
         texture.Apply(); // Apply all SetPixel calls
 
-
-        if(!noRenderPipeline)
-            mat.SetTexture("_Wobbl", texture);
-        else
-            mat.SetTexture("_RippleTex", texture);
+        //mat.SetTexture("_RippleTex", texture);
+        mat.SetTexture("_Wobbl", texture);
     }
 
 
 
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        activateWobble();
+    }
 
 
     /*
